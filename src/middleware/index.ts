@@ -15,7 +15,8 @@ if (!location) {
 axios.interceptors.request.use(
   (config) => {
     if (!config.headers.Authorization) {
-      const token = JSON.parse(localStorage.getItem("books-for-all-token"));
+      const tokenString = localStorage.getItem("books-for-all-token");
+      const token = tokenString ? JSON.parse(tokenString) : null;
 
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -50,7 +51,7 @@ axios.interceptors.response.use(
       localStorage.removeItem("books-for-all-token");
       localStorage.removeItem("books-for-all-user");
       localStorage.removeItem("books-for-all-state");
-      if (router.history.current.name !== "login") {
+      if (router.currentRoute.value.name !== "login") {
         router.push({ name: "login" });
       }
       return true;
