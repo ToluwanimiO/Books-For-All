@@ -131,6 +131,8 @@ export const useAuthStore = defineStore({
               );
               localStorage.setItem("books-for-all-user", JSON.stringify(data));
               localStorage.setItem("books-for-all-user-role", data.role);
+              this.user = data;
+              this.token = token;
             }
             resolve(response);
           })
