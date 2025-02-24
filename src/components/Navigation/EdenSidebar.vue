@@ -72,8 +72,8 @@
         <el-menu :default-active="nav" :router="true">
           <template v-for="(route, index) in navRoutes">
             <template v-if="!route.sub_routes">
-              <el-menu-item v-if="route.access.includes(user.role) || (route.access.includes('all') && user.role=='')" :key="index"
-                :index="route.name" :route="{
+              <el-menu-item v-if="route.access.includes(user.role) || (route.access.includes('all') && user.role == '')"
+                :key="index" :index="route.name" :route="{
                   name: `${route.name}`,
                 }">
                 <span class="icon">
@@ -151,7 +151,7 @@ const logout = () => {
   localStorage.removeItem("books-for-all-onboarding-position");
   router.push({ name: "login" });
 };
-const routeUser = (route) => {
+const routeUser = (route: any) => {
   router.push({ name: route });
 };
 
@@ -159,7 +159,7 @@ const closeSidebar = () => { };
 
 const setNav = () => {
   console.log(route)
-  nav.value = route.name;
+  nav.value = route.name as string;
   console.log(nav.value);
 };
 

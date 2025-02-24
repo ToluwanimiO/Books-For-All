@@ -2,8 +2,6 @@ import PartnerSchools from "@/pages/dashboard/partner-schools.vue";
 import { shallowRef } from "vue";
 
 const Dashboard = () => import("@/pages/dashboard/dashboard.vue");
-const CorporateDashboard = () => import("@/pages/dashboard/corporate-dashboard.vue");
-const ActivityFeed = () => import("@/pages/dashboard/activity-feed.vue");
 
 const routes = () => {
   return [
@@ -21,16 +19,6 @@ const routes = () => {
       path: "/partner-schools",
       name: "partner-schools",
       component: shallowRef(PartnerSchools).value,
-      meta: {
-        module: "dashboard",
-        permission: "user",
-        layout: "AppLayoutSideNav"
-      },
-    },
-    {
-      path: '/donate',
-      name: "donate",
-      component: shallowRef(CorporateDashboard).value,
       meta: {
         module: "dashboard",
         permission: "user",
