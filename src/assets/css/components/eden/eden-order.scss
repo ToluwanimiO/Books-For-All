@@ -1,0 +1,43 @@
+.edit-order {
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__banner {
+    background-color: #fff8e1;
+    color: #0f241b;
+    cursor: pointer;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    text-align: center;
+
+    .text-primary {
+      font-weight: 500;
+    }
+  }
+
+  &__item {
+    border: 1px solid #f0f4f2;
+    border-radius: 8px;
+    color: var(--eden-grey-primary);
+    padding: 12px 16px 10px;
+    margin-bottom: 16px;
+
+    .el-button {
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 20px;
+
+      i {
+        margin-right: 4px;
+        color: var(--eden-red-primary);
+      }
+
+      &.danger {
+        color: #e1404d;
+        margin: auto;
+      }
+    }
+  }
+}

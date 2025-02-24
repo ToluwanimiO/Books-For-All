@@ -1,0 +1,100 @@
+.el-tag {
+  border-radius: 6px;
+  font-size: 0.7rem;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 7px;
+  border: none;
+  text-transform: capitalize;
+
+  + .el-tag {
+    margin-left: 10px;
+  }
+
+  &.el-tag {
+    background: var(--eden-grey-septenary);
+    color: var(--eden-grey-secondary) !important;
+
+    &--success {
+      background: var(--eden-green-septenary) !important;
+      color: var(--eden-green-primary) !important;
+
+      &-dark {
+        background: #ebfff5;
+        color: var(--eden-grey-secondary);
+      }
+    }
+
+    &--info {
+      background: var(--eden-grey-septenary) !important;
+      color: var(--eden-grey-tertiary) !important;
+
+      .el-tag__close {
+        background: transparent;
+        color: var(--eden-grey-quaternary);
+        font-size: 16px;
+      }
+    }
+
+    &--warning {
+      background: #fff3df !important;
+      color: #ff9d00 !important;
+    }
+
+    &--danger {
+      background: #fbe7e9 !important;
+      color: var(--eden-red-primary) !important;
+    }
+
+    &--beauty,
+    &--carebox,
+    &--cleaning,
+    &--laundry,
+    &--meal,
+    &--food,
+    &--dailymeal,
+    &--dailymeals {
+      color: var(--eden-grey-secondary) !important;
+      border: none !important;
+    }
+
+    &--beauty {
+      background: var(--eden-pink-septenary);
+    }
+
+    &--carebox {
+      background: var(--eden-carebox);
+    }
+
+    &--cleaning {
+      background: var(--eden-orange-septenary);
+    }
+
+    &--laundry {
+      background: var(--eden-purple-septenary);
+    }
+
+    &--meal,
+    &--food,
+    &--dailymeal,
+    &--dailymeals {
+      background: var(--eden-green-septenary);
+    }
+
+    &--cross-info {
+      background: var(--eden-blue-septenary) !important;
+      color: var(--eden-blue-primary) !important;
+    }
+
+    &--up-info {
+      background: var(--eden-purple-septenary) !important;
+      color: var(--eden-purple-primary) !important;
+    }
+  }
+
+  &.small {
+    height: 24px;
+    font-size: 10px;
+    line-height: 24px;
+  }
+}

@@ -1,0 +1,122 @@
+:root {
+  /* Grey / Text */
+  --eden-grey-primary: #0f241b;
+  --eden-grey-secondary: #1d352a;
+  --eden-grey-tertiary: #4b6358;
+  --eden-grey-quaternary: #8aa398;
+  --eden-grey-quinary: #cbd8d2;
+  --eden-grey-senary: #e2e9e6;
+  --eden-grey-septenary: #f0f4f2;
+  --eden-grey-octonary: #f9fbfa;
+
+  /* Beauty */
+  --eden-beauty-bg: #fefbfd;
+  --eden-beauty-border: #f4b7d8;
+  --eden-pink-primary: #e93896;
+  --eden-pink-secondary: #e558a3;
+  --eden-pink-tertiary: #e870b0;
+  --eden-pink-quaternary: #f0a0cb;
+  --eden-pink-quinary: #f4b7d8;
+  --eden-pink-senary: #f8cfe5;
+  --eden-pink-septenary: #fbe7f2;
+  --eden-pink-octonary: #fef6fa;
+  --eden-pink-nonary: #fefbfd;
+
+  /* Carebox */
+  --eden-carebox: #ebfaff;
+
+  /* Orange [Cleaning] */
+  --eden-cleaning-bg: #fffdfa;
+  --eden-cleaning-border: #ffda9f;
+  --eden-orange-primary: #ff9d00;
+  --eden-orange-secondary: #ffb640;
+  --eden-orange-tertiary: #ffc260;
+  --eden-orange-quaternary: #ffce80;
+  --eden-orange-quinary: #ffda9f;
+  --eden-orange-senary: #ffe7bf;
+  --eden-orange-septenary: #fff3df;
+  --eden-orange-octonary: #fffbf5;
+  --eden-orange-nonary: #fffdfa;
+
+  /* Purple [Laundry] */
+  --eden-laundry-bg: #fafbfe;
+  --eden-laundry-border: #b8c4ff;
+  --eden-purple-primary: #5571ff;
+  --eden-purple-secondary: #7189ff;
+  --eden-purple-tertiary: #8398ff;
+  --eden-purple-quaternary: #95a6ff;
+  --eden-purple-quinary: #b8c4ff;
+  --eden-purple-senary: #ccd5ff;
+  --eden-purple-septenary: #e5e9fc;
+  --eden-purple-octonary: #f7f8fe;
+  --eden-purple-nonary: #fafbfe;
+
+  /* Blue */
+  --eden-blue-primary: #00c0ea;
+  --eden-blue-secondary: #7ddbf0;
+  --eden-blue-tertiary: #8ddff2;
+  --eden-blue-quaternary: #a9ecff;
+  --eden-blue-quinary: #bfedf8;
+  --eden-blue-senary: #d1f2fa;
+  --eden-blue-septenary: #ebfaff;
+  --eden-blue-octonary: #f7fdff;
+  --eden-blue-nonary: #f7fdff;
+
+  /* Green [Meal] */
+  --eden-meal-bg: #fafffc;
+  --eden-meal-border: #bdeecd;
+  --eden-green-primary: #03a84e;
+  --eden-green-secondary: #14b757;
+  --eden-green-tertiary: #6ece8a;
+  --eden-green-quaternary: #98dcaf;
+  --eden-green-quinary: #bdeecd;
+  --eden-green-senary: #d4f7e5;
+  --eden-green-septenary: #ebfff5;
+  --eden-green-octonary: #f6fffa;
+  --eden-green-nonary: #fafffc;
+
+  /* Red */
+  --eden-danger: #f40529;
+  --eden-red-primary: #e1404d;
+  --eden-red-secondary: #e55863;
+  --eden-red-tertiary: #e8707a;
+  --eden-red-quaternary: #f0a0a6;
+  --eden-red-senary: #f8cfd2;
+  --eden-text-black: #0f241b;
+
+  --eden-sidenav: #f9fbfa;
+  --white: #ffffff;
+}
+
+/** Text **/
+
+.text-primary {
+  color: var(--eden-green-primary) !important;
+}
+
+.text-secondary {
+  color: var(--eden-green-secondary) !important;
+}
+
+.text-red-primary {
+  color: var(--eden-red-primary) !important;
+}
+
+.text-grey-primary {
+  color: var(--eden-grey-primary) !important;
+}
+
+.text-grey-secondary {
+  color: var(--eden-grey-secondary) !important;
+}
+
+.text-grey-quaternary {
+  color: var(--eden-grey-quaternary) !important;
+}
+.text-grey-tertiary {
+  color: var(--eden-grey-tertiary) !important;
+}
+
+.text-danger {
+  color: var(--eden-red-primary) !important;
+}

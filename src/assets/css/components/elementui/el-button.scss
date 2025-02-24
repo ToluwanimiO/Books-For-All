@@ -1,0 +1,74 @@
+.el-button {
+  font-family: "CerebriSans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+
+    + i {
+      margin-left: 5px !important;
+    }
+  }
+
+  i:not(.font-standalone) {
+    font-size: 0.875rem;
+
+    + span {
+      margin-left: 5px;
+    }
+  }
+
+  &--plain {
+    border: 1px solid var(--eden-grey-senary);
+    color: var(--eden-grey-primary);
+  }
+
+  &--primary {
+    i {
+      color: #ffffff !important;
+    }
+
+    &.is-disabled {
+      color: #fff !important;
+      background-color: var(--eden-grey-quinary) !important;
+      border-color: var(--eden-grey-quinary) !important;
+    }
+  }
+
+  &--danger {
+    &.is-plain,
+    &.is-plain:hover,
+    &.is-plain:focus {
+      background: transparent;
+      border: 1px solid var(--eden-grey-senary);
+      color: var(--eden-danger);
+    }
+  }
+
+  &--control {
+    border-radius: 6px;
+    height: 28px;
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.is-disabled {
+      i {
+        color: var(--eden-grey-quinary);
+      }
+    }
+
+    i {
+      font-size: 0.75rem;
+    }
+  }
+
+  + .el-dropdown {
+    margin-left: 10px !important;
+  }
+}

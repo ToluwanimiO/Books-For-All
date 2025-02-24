@@ -1,0 +1,70 @@
+// Radio
+.el-radio {
+  &__label {
+    font-size: 0.975rem !important;
+  }
+}
+
+.eden-switch-radio {
+  width: 100%;
+  background: var(--eden-grey-septenary);
+  padding: 4px;
+  border-radius: 4px;
+
+  .el-radio-button {
+    width: 50%;
+
+    .el-radio-button__inner {
+      width: 100%;
+      border: none !important;
+      background: transparent;
+      color: var(--eden-grey-tertiary);
+      box-shadow: none;
+      padding: 7px 20px;
+      font-weight: 500;
+      transition: all 0.2s ease-in;
+    }
+
+    .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+      background: var(--eden-green-octonary);
+      color: var(--eden-green-primary) !important;
+      transition: all 0.2s ease-out;
+    }
+  }
+
+  &.small {
+    border-radius: 8px;
+
+    .el-radio-button__inner {
+      padding: 7px 20px;
+      font-size: 0.75rem;
+    }
+
+    .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+      color: var(--eden-grey-secondary);
+      border-radius: 8px;
+    }
+  }
+}
+
+.eden-group-radio {
+  .el-radio-button {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    width: 100%;
+
+    .el-radio-button__inner {
+      width: 100%;
+      border: 1px solid #798b831a;
+      border-radius: 4px;
+      color: #798b83;
+    }
+
+    &.is-active .el-radio-button__inner {
+      background: #ebfff5;
+      color: #03a84e !important;
+      box-shadow: none;
+    }
+  }
+}

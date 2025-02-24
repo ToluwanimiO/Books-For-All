@@ -1,0 +1,56 @@
+.el-input {
+  .el-input__inner {
+    color: var(--eden-grey-secondary);
+    font-size: 0.875rem !important;
+
+    &::placeholder {
+      font-size: 0.8rem !important;
+    }
+
+    &:focus + .el-input-group__append {
+      border-color: var(--eden-green-primary);
+    }
+  }
+
+  &__wrapper {
+    border-radius: 8px !important;
+    padding: 5px 10px !important;
+  }
+}
+
+.el-textarea__inner {
+  font-size: 0.875rem;
+}
+
+.el-input-group--append .el-input-group__append {
+  font-size: 0.8rem;
+  padding-right: 10px;
+}
+
+.chat-message{
+  
+  .el-input {
+    
+    &__wrapper {
+      border-radius: 8px !important;
+      padding: 5px 10px !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+
+      .el-input__inner {
+        color: var(--eden-grey-secondary);
+        font-size: 0.875rem !important;
+        &::placeholder {
+          font-size: 0.8rem !important;
+        }
+      }
+    }
+  }
+  
+  .el-input-group--append .el-input-group__append {
+    font-size: 0.8rem;
+    padding-right: 10px;
+  }
+  
+  
+}

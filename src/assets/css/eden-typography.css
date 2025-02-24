@@ -1,0 +1,128 @@
+.head-text {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+}
+
+.body-text {
+  font-family: "CerebriSans", sans-serif;
+}
+.page-title{
+  font-family: 'PT Serif';
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PT Serif", serif;
+  margin: 0;
+  line-height: 1;
+  color: var(--eden-grey-primary);
+}
+
+h1 {
+  font-size: 3.75rem;
+}
+
+h2 {
+  font-size: 3.375rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.625rem;
+}
+
+h5 {
+  font-size: 2.25rem;
+}
+
+h6 {
+  font-size: 2rem;
+}
+
+p {
+  margin: 0;
+  color: var(--eden-grey-primary);
+  line-height: 1.4;
+  font-family: "CerebriSans", sans-serif;
+}
+
+a,
+a:hover {
+  color: var(--eden-grey-primary);
+  text-decoration: none;
+  font-family: "CerebriSans", sans-serif;
+}
+
+span {
+  font-family: "CerebriSans", sans-serif;
+}
+
+.font-3xl {
+  font-size: 2rem !important;
+}
+
+.font-2xl {
+  font-size: 1.5rem !important;
+}
+
+.font-xl {
+  font-size: 1.25rem !important;
+}
+
+.font-lg {
+  font-size: 1.125rem !important;
+}
+.font-md {
+  font-size: 1rem !important;
+}
+
+.font-base {
+  font-size: 0.875rem !important;
+}
+
+.font-sm {
+  font-size: 0.775rem !important;
+}
+
+.font-xsm {
+  font-size: 0.7rem;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.text-medium {
+  font-weight: 500;
+}
+
+.text-normal {
+  font-weight: 400;
+}
+
+.text-cursor {
+  cursor: pointer !important;
+}
+
+.text-normalize {
+  text-transform: none !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}

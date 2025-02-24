@@ -1,0 +1,280 @@
+@font-face {
+  font-family: "eden-icons";
+  src: url("../fonts/icons/eden-icons.eot?6vnp3g");
+  src: url("../fonts/icons/eden-icons.eot?6vnp3g#iefix")
+      format("embedded-opentype"),
+    url("../fonts/icons/eden-icons.ttf?6vnp3g") format("truetype"),
+    url("../fonts/icons/eden-icons.woff?6vnp3g") format("woff"),
+    url("../fonts/icons/eden-icons.svg?6vnp3g#eden-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="eden-icon-"],
+[class*=" eden-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "eden-icons", serif !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 20px;
+  text-transform: none;
+  line-height: 1;
+  color: #4b6358;
+
+  /* Better Font Rendering =========== */
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.eden-icon-add-circle:before {
+  content: "\e900";
+}
+
+.eden-icon-add:before {
+  content: "\e901";
+}
+
+.eden-icon-alert-circle:before {
+  content: "\e902";
+}
+
+.eden-icon-alert-triangle:before {
+  content: "\e903";
+}
+
+.eden-icon-arrow-down:before {
+  content: "\e904";
+}
+
+.eden-icon-arrow-left:before {
+  content: "\e905";
+}
+
+.eden-icon-arrow-right:before {
+  content: "\e906";
+}
+
+.eden-icon-arrow-up:before {
+  content: "\e907";
+}
+
+.eden-icon-calendar:before {
+  content: "\e908";
+}
+
+.eden-icon-check-circle:before {
+  content: "\e909";
+}
+
+.eden-icon-check:before {
+  content: "\e90a";
+}
+
+.eden-icon-combo:before {
+  content: "\e90b";
+}
+
+.eden-icon-communication:before {
+  content: "\e90c";
+}
+
+.eden-icon-credit-card:before {
+  content: "\e90d";
+}
+
+.eden-icon-customer-health:before {
+  content: "\e90e";
+}
+
+.eden-icon-customers:before {
+  content: "\e90f";
+}
+
+.eden-icon-dashboard:before {
+  content: "\e910";
+}
+
+.eden-icon-delete:before {
+  content: "\e911";
+}
+
+.eden-icon-discounts:before {
+  content: "\e912";
+}
+
+.eden-icon-download:before {
+  content: "\e913";
+}
+
+.eden-icon-edit-write:before {
+  content: "\e914";
+}
+
+.eden-icon-edit:before {
+  content: "\e915";
+}
+
+.eden-icon-eye-off:before {
+  content: "\e916";
+}
+
+.eden-icon-eye:before {
+  content: "\e917";
+}
+
+.eden-icon-feedback:before {
+  content: "\e918";
+}
+
+.eden-icon-filter:before {
+  content: "\e919";
+}
+
+.eden-icon-gardener:before {
+  content: "\e91a";
+}
+
+.eden-icon-grid:before {
+  content: "\e91b";
+}
+
+.eden-icon-impersonate:before {
+  content: "\e934";
+}
+
+.eden-icon-info-circle:before {
+  content: "\e91c";
+}
+
+.eden-icon-kitchen:before {
+  content: "\e91d";
+}
+
+.eden-icon-loading .path1:before {
+  content: "\e91e";
+  opacity: 0.3972;
+}
+
+.eden-icon-loading .path2:before {
+  content: "\e91f";
+  margin-left: -1em;
+}
+
+.eden-icon-logout:before {
+  content: "\e935";
+}
+
+.eden-icon-minus:before {
+  content: "\e920";
+}
+
+.eden-icon-more-horizontal:before {
+  content: "\e921";
+}
+
+.eden-icon-more:before {
+  content: "\e922";
+}
+
+.eden-icon-notification:before {
+  content: "\e923";
+}
+
+.eden-icon-operations:before {
+  content: "\e924";
+}
+
+.eden-icon-order-fulfillment:before {
+  content: "\e925";
+}
+
+.eden-icon-orders:before {
+  content: "\e926";
+}
+
+.eden-icon-question:before {
+  content: "\e927";
+}
+
+.eden-icon-remove-circle:before {
+  content: "\e928";
+}
+
+.eden-icon-remove:before {
+  content: "\e929";
+}
+
+.eden-icon-search:before {
+  content: "\e92a";
+}
+
+.eden-icon-service-partners:before {
+  content: "\e92b";
+}
+
+.eden-icon-services:before {
+  content: "\e92c";
+}
+
+.eden-icon-settings:before {
+  content: "\e92d";
+}
+
+.eden-icon-subscriptions:before {
+  content: "\e92e";
+}
+
+.eden-icon-upload:before {
+  content: "\e92f";
+}
+
+.eden-icon-user:before {
+  content: "\e930";
+}
+
+.eden-icon-users-add:before {
+  content: "\e931";
+}
+
+.eden-icon-users:before {
+  content: "\e932";
+}
+
+.eden-icon-zones:before {
+  content: "\e933";
+}
+.eden-icon-guide {
+  display: inline-block;
+  width: 1rem;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg  xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16"><path stroke="black" stroke-width="1.13" stroke-linejoin="round" fill="none" stroke-linecap="round" d="M13.4285 7.14289C13.4364 5.99541 13.1371 4.86672 12.5615 3.874C11.9859 2.88128 11.1551 2.06072 10.1553 1.49751C9.15555 0.934294 8.02324 0.648958 6.87594 0.671121C5.72865 0.693285 4.60819 1.02214 3.63091 1.62355C2.65362 2.22495 1.85513 3.07699 1.31832 4.0912C0.781513 5.1054 0.525962 6.24481 0.578199 7.39113C0.630435 8.53745 0.988554 9.6489 1.61538 10.6101C2.2422 11.5713 3.11488 12.3471 4.14281 12.8572V15C4.14281 15.1895 4.21806 15.3712 4.35202 15.5051C4.48597 15.6391 4.66765 15.7143 4.8571 15.7143H9.14281C9.33225 15.7143 9.51393 15.6391 9.64789 15.5051C9.78184 15.3712 9.8571 15.1895 9.8571 15V12.8572C10.9249 12.3311 11.8249 11.5176 12.4558 10.5081C13.0867 9.49868 13.4235 8.33327 13.4285 7.14289Z"/><path stroke="black" stroke-width="1.13" stroke-linejoin="round" fill="none" stroke-linecap="round" d="M4.14282 19.2858H9.85711" /></svg>') 0 0/contain;
+  background: currentColor;
+}
+
+.eden-chat-bubble {
+  display: inline-block;
+  width: 1rem;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg  xmlns="http://www.w3.org/2000/svg" width="18" height="23" viewBox="0 0 18 18"><path stroke="green" stroke-width="1.13" stroke-linejoin="round" fill="green" stroke-linecap="round" d="M9.5625 0.562512C8.1591 0.560488 6.78073 0.934071 5.57042 1.64449C4.36012 2.35491 3.36198 3.37629 2.6796 4.60262C1.99721 5.82895 1.65545 7.21556 1.68976 8.61854C1.72408 10.0215 2.13323 11.3898 2.87475 12.5813L0.5625 17.4375L5.418 15.1253C6.45353 15.7691 7.62442 16.1637 8.83841 16.2779C10.0524 16.3921 11.2763 16.2228 12.4138 15.7834C13.5512 15.3441 14.5711 14.6465 15.393 13.7458C16.215 12.8451 16.8165 11.7659 17.1503 10.5931C17.4841 9.42031 17.5409 8.18603 17.3164 6.98752C17.0919 5.78901 16.5921 4.65901 15.8565 3.68655C15.1209 2.71409 14.1695 1.92574 13.0773 1.38362C11.985 0.841497 10.7819 0.560412 9.5625 0.562512Z"/></svg>') 0 0/contain;
+  background: currentColor;
+}
+.eden-icon-single-tick {
+  display: inline-block;
+  width: 1rem;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg width="19" height="14" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.12 1L4.492 9.76152C4.40605 9.8603 4.29647 9.94202 4.17066 10.0011C4.04486 10.0602 3.90577 10.0954 3.76283 10.1041C3.61989 10.1129 3.47643 10.0951 3.34217 10.052C3.20791 10.0088 3.08599 9.94128 2.98467 9.85398L1 8.14429" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background: currentColor;
+}
+.eden-icon-double-tick {
+  display: inline-block;
+  width: 1rem;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4999 3L7.87188 11.7615C7.78594 11.8603 7.67635 11.942 7.55055 12.0011C7.42474 12.0602 7.28566 12.0954 7.14272 12.1041C6.99977 12.1129 6.85632 12.0951 6.72206 12.052C6.5878 12.0088 6.46588 11.9413 6.36455 11.854L4.37988 10.1443" stroke="black" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.00042 11.907C3.90795 11.9884 3.79764 12.0533 3.67589 12.0977C3.55413 12.1422 3.42334 12.1655 3.29109 12.1661C3.15883 12.1667 3.02775 12.1448 2.90542 12.1015C2.78309 12.0582 2.67194 11.9944 2.57842 11.9139L0.59375 10.207" stroke="black" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.62 3.06055L6.19336 9.294" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background: currentColor;
+}
+.eden-icon-guide::before, .eden-chat-bubble::before,.eden-icon-double-tick::before,.eden-icon-single-tick::before{
+  content: "";
+  display: block;
+  padding-top: 100%;
+}

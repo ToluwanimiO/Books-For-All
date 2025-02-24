@@ -1,0 +1,49 @@
+.el-tabs {
+  font-family: "CerebriSans", sans-serif;
+
+  &__header {
+    margin: 0 0 24px;
+
+    transform: translateY(-10px);
+  }
+  &__nav-wrap {
+    &::after {
+      display: none;
+    }
+  }
+  &__nav-scroll {
+    border-bottom: 1px solid var(--eden-grey-septenary);
+  }
+
+  &__active-bar {
+    display: none !important;
+  }
+
+  &__item {
+    color: #8aa398 !important;
+    font-weight: 400;
+    padding: 0px !important;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    font-size: 0.825rem;
+
+    &.is-active {
+      color: #0f241b !important;
+      font-weight: 500;
+      // border-bottom: 2px solid var(--eden-green-primary);
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 4px;
+        z-index: 1;
+        background: #03a84e;
+        bottom: 2px;
+        left: 50%;
+        border-radius: 50px;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

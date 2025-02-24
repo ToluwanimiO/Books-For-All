@@ -1,0 +1,121 @@
+@import "eden-variables";
+@import "eden-theme.css";
+@import "eden-typography.css";
+@import "eden-components";
+@import "eden-layout";
+@import "eden-forms";
+@import "eden-icons.css";
+@import "eden-fonts";
+@import "eden-borders";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "CerebriSans", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-cta {
+  color: #03a84e !important;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.boxCard {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 32px;
+  width: 42%;
+  padding: 8px 50px 15px 50px;
+}
+
+.eden-box {
+  border: 1px solid var(--eden-grey-senary);
+  border-radius: 8px;
+  background: #fff;
+  padding: 20px 20px;
+}
+.font-28 {
+  font-size: 28px;
+}
+
+.eden-header {
+  &__title {
+    font-weight: 500;
+    color: var(--eden-grey-primary);
+  }
+
+  &__description {
+    font-weight: 500;
+    color: var(--eden-grey-tertiary);
+  }
+}
+a,a:hover {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.eden-link {
+  display: inline-block;
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: var(--eden-green-primary);
+  border-bottom: 1px solid var(--eden-green-primary);
+}
+
+input,
+textarea {
+  font-family: "CerebriSans", sans-serif;
+  font-weight: 400;
+}
+.colored-card {
+  background: #fafffc;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.fadeIn {
+  opacity: 0;
+  -webkit-animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.5s ease-out forwards;
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.empty-indicator {
+  margin: 10px 0 20px;
+  font-weight: 400;
+  text-align: center;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

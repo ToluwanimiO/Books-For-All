@@ -1,0 +1,143 @@
+.el-collapse {
+  border: none !important;
+
+  &-item {
+    border: 1px solid;
+    border-color: var(--eden-grey-septenary);
+    border-radius: 8px;
+    color: var(--eden-grey-primary);
+    padding: 5px 14px;
+
+    &.plain {
+      border: none;
+      padding: 0;
+
+      .el-collapse-item__header .el-collapse-item__arrow {
+        display: none;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+
+    &.beauty {
+      background: var(--eden-pink-nonary);
+      border-color: var(--eden-pink-quaternary);
+    }
+
+    &.cleaning {
+      background: var(--eden-orange-nonary);
+      border-color: var(--eden-orange-quaternary);
+    }
+
+    &.laundry {
+      background: var(--eden-purple-nonary);
+      border-color: var(--eden-purple-quaternary);
+    }
+
+    &.dailymeal,
+    &.dailymeals,
+    &.meal,
+    &.food {
+      background: var(--eden-green-nonary) !important;
+      border-color: var(--eden-green-quaternary) !important;
+    }
+
+    &__header {
+      border: none !important;
+      background: transparent !important;
+      font-weight: 400;
+      position: relative;
+      height: auto !important;
+      line-height: 1;
+      align-items: flex-start;
+
+      .remove-icon {
+        + i {
+          display: none;
+        }
+      }
+      .hide-icon {
+        margin-left: 32px;
+
+        + i {
+          position: absolute;
+          top: 15%;
+          left: 0;
+          font-size: 1rem;
+        }
+      }
+      .el-collapse-item__arrow {
+        top: 40% !important;
+      }
+    }
+
+    &__wrap {
+      border: none !important;
+      background: transparent !important;
+    }
+
+    &__content {
+      padding-bottom: 0 !important;
+    }
+
+    &__arrow {
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f241b !important;
+      line-height: 1;
+    }
+
+    &.remove-icon {
+      .el-collapse-item__arrow {
+        display: none;
+      }
+    }
+  }
+}
+
+.eden-custom-activity--collapse{
+  .el-collapse-item{
+    border: none !important;
+  }
+  .el-collapse-item__arrow {
+    margin-left: 12px;
+  }
+  .el-collapse-item__content {
+     padding-left: 22px !important;
+     color:var(--eden-grey-secondary) !important;
+    >div{
+      padding: 16px 8px 16px 16px;
+      border: 1px solid #F0F4F2;
+    }
+
+  }
+  .el-collapse-item__header {
+    direction: rtl;
+    justify-content: end;
+    color: var(--eden-grey-primary) !important;
+    font-weight: 400 !important;
+    border: none;
+  }
+}
+.eden-custom-guide--collapse{
+  .el-collapse-item{
+    border: none !important;
+  }
+  .el-collapse-item__content {
+     color:var(--eden-grey-tertiary) !important;
+  }
+  .el-collapse-item__header {
+    color: var(--eden-grey-primary) !important;
+  }
+  .el-collapse {
+    &-item {
+      &:not(:last-child) {
+        border-bottom: 1px solid #E2E9E6 !important;
+      }
+    }
+  }
+  
+}

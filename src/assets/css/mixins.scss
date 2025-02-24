@@ -1,0 +1,95 @@
+@mixin font-family($keyword) {
+  font-family: get-font-family($keyword);
+}
+
+@mixin font-size($keyword) {
+  font-size: get-font-size($keyword);
+}
+
+@mixin font-weight($keyword) {
+  font-weight: get-font-weight($keyword);
+}
+
+@mixin respond($breakpoint) {
+  @if ($breakpoint == xxs) {
+    @media only screen and (max-width: 20em) {
+      @content;
+    } // 320px
+  }
+  @if ($breakpoint == xs) {
+    @media only screen and (max-width: 36em) {
+      @content;
+    } // 567px
+  }
+  @if ($breakpoint == md) {
+    @media only screen and (max-width: 48em) {
+      @content;
+    } // 768px
+  }
+  @if ($breakpoint == lg) {
+    @media only screen and (max-width: 61.938em) {
+      @content;
+    } // 990px
+  }
+  @if ($breakpoint == xl) {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
+  @if ($breakpoint == xxl) {
+    @media only screen and (min-width: 106.25em) {
+      @content;
+    } // 1700px
+  }
+}
+
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semi-bold: 600,
+  bold: 700,
+);
+
+$font-sizes: (
+  xs: 0.75rem,
+  //12px
+  sm: 0.875rem,
+  //14px
+  base: 1rem,
+  //16px
+  lg: 1.125rem,
+  //18px
+  xl: 1.25rem,
+  //20px
+  2xl: 1.5rem,
+  //24px
+  3xl: 1.75rem,
+  //28px
+  4xl: 2rem,
+  //32px
+  5xl: 2.25rem,
+  //36px
+  6xl: 2.625rem,
+  //42px
+  7xl: 3rem,
+  //48px
+  8xl: 3.375rem,
+  //54px
+  9xl: 3.75rem,
+  //60px
+  10xl: 4.25rem,
+  //68px,,,,,,,,,,,
+);
+
+// spacing
+$gap: 10px;
+
+// $--xs: 375px !default;
+// $--sm: 768px !default;
+// $--md: 1024px !default;
+// $--lg: 1440px !default;
+// $--xl: 1920px !default;
+// @media only screen  and (min-width : 1824px) {
+//   /* Styles */
+//   }

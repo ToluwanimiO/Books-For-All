@@ -1,0 +1,22 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base':#03A84E,
+    ),
+    'success': (
+      'base':#03A84E,
+    ),
+  ),
+  $text-color:(
+    'primary': #03A84E,
+    // 'regular': rgba($text-color-base, 0.85),
+    // 'secondary': rgba($text-color-base, 0.65),
+    // 'placeholder': #14B757,
+    // 'disabled': rgba($text-color-base, 0.4)
+  ),
+  $message:(
+    'sucess':#03A84E
+  )
+
+);
+@use "element-plus/theme-chalk/src/index.scss" as *;

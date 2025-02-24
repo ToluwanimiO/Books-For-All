@@ -1,0 +1,246 @@
+@import "../../mixins";
+.el-dialog {
+  background: #fff;
+  border-radius: 12px !important;
+  box-shadow: none;
+  margin-top: 0 !important;
+  top: 40%;
+  transform: translateY(-50%);
+  max-height: 80%;
+  overflow-y: hidden;
+
+  &__wrapper.right .el-dialog {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    width: 95%;
+    @media (min-width: 768px) {
+      width: 52%;
+    }
+    @media (min-width: 1112px) {
+      width: 42%;
+    }
+  }
+
+  .el-dialog__header {
+    position: relative;
+    padding: 20px 20px !important;
+    margin-right: 0 !important;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      bottom: 0;
+      height: 1px;
+      width: calc(100% - 40px);
+      background: var(--eden-grey-septenary);
+    }
+  }
+
+  .el-dialog__headerbtn {
+    border: 1px solid var(--eden-grey-septenary);
+    border-radius: 100px;
+    height: 26px;
+    width: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .el-dialog__title {
+    color: var(--eden-grey-primary);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .el-dialog__body {
+    word-break: break-word;
+    color: #0f241b;
+    padding: 20px !important;
+
+    p {
+      line-height: 1.8;
+      font-size: 0.875rem;
+    }
+  }
+
+  .dialog-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  @media (min-width: 1440px) {
+    width: 35% !important;
+  }
+
+  @media (max-width: 1200px) {
+    width: 40% !important;
+  }
+
+  @media (max-width: 798px) {
+    width: 50% !important;
+  }
+
+  @media (max-width: 576px) {
+    width: 80% !important;
+  }
+}
+.imageModal{
+  height:100%;
+  background-color: rgba(15, 36, 27, 0.7) !important;
+  @media (min-width: 1440px) {
+    width: 95% !important;
+  }
+
+  @media (max-width: 1200px) {
+    width: 95% !important;
+  }
+
+  @media (max-width: 798px) {
+    width: 95% !important;
+  }
+
+  @media (max-width: 576px) {
+    width: 95% !important;
+  }
+}
+.el-dialog__wrapper {
+  &.strict .el-dialog {
+    width: 50% !important;
+  }
+
+  @media (max-width: 600px) {
+    &.strict .el-dialog {
+      width: 100% !important;
+    }
+  }
+}
+
+.el-dialog {
+  width: 30%;
+  margin-top: 5vh !important;
+  // height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  @include respond(md) {
+    width: 100%;
+    border-radius: 16px 16px 0px 0px;
+    height: auto;
+    margin: 0;
+  }
+}
+.gh-container--dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $gap * 4;
+
+    .logo-border {
+      margin: auto;
+      border: solid 1px #ffb640;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      @include respond(md) {
+        height: 80px;
+        width: 80px;
+      }
+      .logo-image {
+        @include respond(md) {
+          height: $gap * 4;
+          width: $gap * 4;
+        }
+      }
+    }
+
+    .header {
+      font-size: $gap * 2;
+      margin-bottom: 17px;
+    }
+  }
+
+  &__content {
+    width: 90%;
+    margin: 0 auto;
+
+    .actions {
+      margin-top: 15px;
+      text-align: center;
+
+      .el-button {
+        width: 100%;
+        margin-top: $gap * 4;
+      }
+    }
+
+    @include respond(md) {
+      width: 100%;
+    }
+  }
+  .mt-20 {
+    margin-top: $gap * 2;
+  }
+  a {
+    color: #03a84e;
+    text-decoration: none;
+    margin-left: 8px;
+  }
+
+  @include respond(md) {
+    width: 100%;
+
+    .sub-head {
+      text-align: left;
+    }
+    .btn-submit {
+      margin-top: $gap * 4;
+      border-radius: 8px;
+      padding-top: $gap;
+      padding-bottom: $gap;
+    }
+  }
+}
+
+.el-card {
+  border: none;
+}
+
+.popper__arrow {
+  display: none !important;
+}
+
+.el-radio__inner {
+  // border: none !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+.el-radio__input.is-checked .el-radio__inner .el-radio__inner::after {
+  background-color: white !important;
+  border-width: 2px !important;
+  transform: translate(0%, 0%) scale(0) !important;
+}
+.el-radio__input.is-checked + .el-radio__label {
+  color: #0f241b !important;
+}
+.el-radio__input.is-disabled .el-radio__inner {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #e2e9e6 !important;
+}
+.el-radio__input.is-disabled + span.el-radio__label {
+  color: #4b6358 !important;
+}

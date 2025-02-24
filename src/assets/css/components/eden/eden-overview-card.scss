@@ -1,0 +1,137 @@
+.overview-card__content {
+  padding: 3px;
+
+  &.pauses {
+    .el-collapse-item {
+      margin-bottom: 0;
+      padding-bottom: 0 !important;
+      border-radius: 0;
+      border: 0;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .label {
+    font-weight: 400;
+    flex-direction: column;
+    width: 100%;
+    color: #1d352a;
+
+    > div:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      top: -2px;
+
+      .type {
+        color: var(--eden-grey-primary);
+        font-weight: 500;
+        font-size: 0.775rem;
+      }
+
+      .status {
+        font-size: 0.775rem;
+      }
+    }
+
+    .subscription.title,
+    .pause.title,
+    .pause-total {
+      margin: 6px 0 16px 0;
+    }
+  }
+
+  .schedule-details {
+    margin-top: 40px;
+    color: #0f241b;
+
+    .service-progress {
+      margin-bottom: 32px;
+    }
+  }
+
+  .subscription-details,
+  .pause-details {
+    color: #1d352a;
+    font-weight: 400;
+
+    .item {
+      margin-bottom: 10px;
+    }
+  }
+
+  .pause-details {
+    margin-bottom: 32px;
+    .item {
+      padding: 16px;
+      border-radius: 8px;
+
+      &.meal {
+        border: 1px solid #6ece8a;
+        background: #f6fffa;
+      }
+
+      &.laundry {
+        background: #f7f8fe;
+        border: 1px solid #8398ff;
+      }
+
+      &.cleaning {
+        background: #fffbf5;
+        border: 1px solid #ffc260;
+      }
+    }
+  }
+
+  .laundry-quality {
+    margin: 10px 0;
+
+    .actions {
+      display: flex;
+      margin: 16px 0 0;
+
+      .el-button--primary.is-disabled {
+        color: #fff;
+        background: #cbd8d2;
+        border: 0;
+      }
+
+      .el-button--danger {
+        background: white;
+        border: 1px solid #e2e9e6;
+
+        &.is-disabled.is-plain {
+          background-color: #fff;
+          border-color: #ebeef5;
+          color: #c0c4cc;
+        }
+        &.is-plain {
+          &:hover,
+          &:focus {
+            background: #f40529;
+            border-color: #f40529;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .selection-card {
+    padding: 16px 8px 16px 16px;
+    color: #1d352a;
+    font-weight: 400;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #f0f4f2;
+    }
+  }
+}

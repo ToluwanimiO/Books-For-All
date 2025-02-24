@@ -1,0 +1,66 @@
+/** Borders **/
+.rounded {
+  border-radius: 8px;
+}
+
+.border {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.border-dashed {
+  border-style: dashed;
+}
+
+.border-primary {
+  border-color: var(--eden-green-primary) !important;
+}
+
+.border-green-tertiary {
+  border-color: var(--eden-green-tertiary) !important;
+}
+
+.border-secondary {
+  border-color: var(--eden-green-secondary) !important;
+}
+
+.border-red-primary {
+  border-color: var(--eden-red-primary) !important;
+}
+
+.border-grey-primary {
+  border-color: var(--eden-grey-primary) !important;
+}
+
+.border-grey-secondary {
+  border-color: var(--eden-grey-secondary) !important;
+}
+
+.border-grey-quaternary {
+  border-color: var(--eden-grey-quaternary) !important;
+}
+
+.border-grey-senary {
+  border-color: var(--eden-grey-senary) !important;
+}
+
+.border-grey-tertiary {
+  border-color: var(--eden-grey-tertiary) !important;
+}
+
+.border-red-primary {
+  border-color: var(--eden-red-primary) !important;
+}
+
+.active-border{
+  border: 1px solid var(--eden-green-primary) !important;
+}
+.card-info{
+  background: #FFFDF5;
+  /* Yellow/Quinary */
+
+  border: 1px solid #FFEBB2;
+  border-radius: 8px;
+  padding: 10px;
+  width: fit-content;
+}

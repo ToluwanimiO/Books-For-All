@@ -1,0 +1,32 @@
+.el-popover {
+  &.el-popper {
+
+    ul li {
+      font-size: 0.875rem;
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+// Popper
+.el-popper .popper__arrow {
+  display: none;
+}
+
+.el-popover {
+  box-shadow: -2px -2px 12px rgba(15, 36, 27, 0.04),
+  2px 2px 8px rgba(15, 36, 27, 0.04);
+  border-radius: 8px;
+  margin-top: 0;
+  padding: 0;
+
+  &__title {
+    color: #0f241b;
+    font-size: 18px;
+    line-height: 28px;
+    padding: 12px;
+  }
+}
