@@ -10,15 +10,16 @@ export const useEmployeesStore = defineStore({
     } => ({
         employees: [
             {
-                id: 1,
-                name: "Aderinsola Olufemi",
-                email: "aderinsolaoluwa@gmail.com",
-                status: "active",
-                date_joined: "",
-                phone_number: "",
-                subscription: "C-suite",
-                subscription_id: 0
-            }
+                title: "Introduction to Physics",
+                author: "Isaac Newton",
+                subject: "Physics",
+                gradeLevel: "Senior Secondary 1",
+                school: { _id: "1", name: "Bright Future Academy" },
+                status: "available",
+                donatedBy: { _id: "101", name: "John Doe" },
+                isbn: "978-3-16-148410-0",
+                description: "A beginner-friendly guide to classical physics concepts.",
+              },
         ],
         addEmployeeData:{}
     }),

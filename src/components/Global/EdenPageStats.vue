@@ -3,14 +3,14 @@
     <div class="page-stat--head">
       <p v-if="title" class="title">{{ title }}</p>
       <div class="actions" :style="{ width: !title ? '100%' : 'auto' }">
-        <eden-periods
+        <!-- <eden-periods
           v-if="showPeriods"
           :orientation="'horizontal'"
           :custom-periods="customPeriods"
           :show-custom-period="showCustomPeriod"
           :disabled="disabled"
           @set-period="$emit('set-period', $event)"
-        />
+        /> -->
         <slot name="actions" />
       </div>
     </div>
@@ -61,7 +61,7 @@
 
 <script lang="ts" setup>
 import { computed, type PropType } from "vue";
-import EdenPeriods from "@/components/Global/EdenPeriods.vue";
+// import EdenPeriods from "@/components/Global/EdenPeriods.vue";
 import useImage from "@/composables/image";
 
 const { getImage } = useImage();
