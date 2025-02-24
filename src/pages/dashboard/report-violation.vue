@@ -1,17 +1,12 @@
 <template>
-    <eden-page-header :title="'Report a Violation'" />
+  <eden-page-header :title="'Report a Violation'" />
 
   <div class="max-w-2xl col-10 mt-5  mx-auto bg-white shadow-md rounded-lg">
 
     <el-form :model="reportData" label-width="120px">
       <el-form-item label="Violation Type">
         <el-select v-model="reportData.type" placeholder="Select a violation">
-          <el-option
-            v-for="option in violationTypes"
-            :key="option.value"
-            :label="option.label"
-            :value="option.value"
-          />
+          <el-option v-for="option in violationTypes" :key="option.value" :label="option.label" :value="option.value" />
         </el-select>
       </el-form-item>
 
@@ -28,12 +23,7 @@
       </el-form-item>
 
       <el-form-item label="Details">
-        <el-input
-          v-model="reportData.details"
-          type="textarea"
-          placeholder="Describe the violation"
-          rows="4"
-        />
+        <el-input v-model="reportData.details" type="textarea" placeholder="Describe the violation" rows="4" />
       </el-form-item>
 
       <el-form-item>
@@ -46,6 +36,7 @@
 <script setup>
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
+import { reportViolation } from "@/requests/dashboard"; // Import the function
 
 const reportData = ref({
   type: "",
@@ -62,29 +53,31 @@ const violationTypes = [
   { label: "Other", value: "other" },
 ];
 
-const submitReport = async () => {
+const submitReport = () => {
   if (!reportData.value.type || !reportData.value.details) {
-    ElMessage.warning("Violation Type and Details are required.");
+    ElMessage.warning({ message: "Violation Type and Details are required." });
     return;
   }
 
-  try {
-    // Simulate API call (replace with actual API request)
-    console.log("Submitting:", reportData.value);
-    ElMessage.success("Report submitted successfully!");
-    
-    // Reset form
-    reportData.value = {
-      type: "",
-      book: "",
-      school: "",
-      donor: "",
-      details: "",
-    };
-  } catch (error) {
-    ElMessage.error("Error submitting report. Please try again.");
-  }
+  reportViolation(reportData.value)
+    .then((response) => {
+      console.log("Response:", response);
+      ElMessage.success({ message: response.data.message || "Report submitted successfully!" });
+
+      Object.assign(reportData.value, {
+        type: "",
+        book: "",
+        school: "",
+        donor: "",
+        details: "",
+      });
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      ElMessage.error({ message: err.response?.data?.message || "Error submitting report. Please try again." });
+    });
 };
+
 </script>
 
 <style scoped>

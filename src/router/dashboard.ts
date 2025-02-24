@@ -25,7 +25,7 @@ const routes = () => {
       component: shallowRef(PartnerSchools).value,
       meta: {
         module: "dashboard",
-        permission: "user",
+        permission: "guest",
         layout: "AppLayoutSideNav"
       },
     },
@@ -35,7 +35,7 @@ const routes = () => {
       component: shallowRef(Donate).value,
       meta: {
         module: "dashboard",
-        permission: "user",
+        permission: "guest",
         layout: "AppLayoutSideNav"
       },
     },

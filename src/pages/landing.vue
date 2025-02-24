@@ -6,15 +6,21 @@
         Welcome to BooksForAll! Your gateway to equitable book access.
       </div>
     </div>
-    <div class="row justify-content-center mx-auto text-center">
-      <div class="col-md-4 boxed mt-4">I’m a Student</div>
-    </div>
-    <div class="row justify-content-center mx-auto text-center">
-      <div class="col-md-4 boxed mt-4">I’m a Donor</div>
-    </div>
-    <div class="row justify-content-center mx-auto text-center">
-      <div class="col-md-4 boxed mt-4">We're a school</div>
-    </div>
+    <router-link :to="{ name: 'find-book' }">
+      <div class="row justify-content-center mx-auto text-center">
+        <div class="col-md-4 boxed mt-4">I’m a Student</div>
+      </div>
+    </router-link>
+    <router-link :to="{ name: 'donate' }">
+      <div class="row justify-content-center mx-auto text-center">
+        <div class="col-md-4 boxed mt-4">I’m a Donor</div>
+      </div>
+    </router-link>
+    <router-link :to="{ name: 'partner-schools' }">
+      <div class="row justify-content-center mx-auto text-center">
+        <div class="col-md-4 boxed mt-4">We're a school</div>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -37,6 +43,7 @@ export default {
   padding: 8px;
   cursor: pointer;
 }
+
 .boxed:hover {
   background-color: #fafffc;
   border: 1px solid #6ece8a;

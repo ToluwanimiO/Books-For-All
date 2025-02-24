@@ -16,7 +16,7 @@ const router = createRouter({
 	routes
 });
 router.beforeEach((to, from, next) => {
-	const storage = localStorage.getItem("books4all-church-token");
+	const storage = localStorage.getItem("books-for-all-token");
 	const token = storage ? JSON.parse(storage) : null;
   
 	const guestRoute = to.meta.permission === "guest";

@@ -19,21 +19,21 @@ export const navRoutes = (): NavItem[] => {
       icon: "eden-icon-dashboard",
       label: "Dashboard",
       name: "dashboard",
-      access: all,
+      access: all.concat(["all"]),
       active: true,
     },
     {
       icon: "eden-icon-users",
       label: "Partner Schools",
       name: "partner-schools",
-      access: all,
+      access: all.concat(["all"]),
       active: true,
     },
     {
       icon: "fa fa-gift",
       label: "Donate",
       name: "donate",
-      access: ["donor"],
+      access: ["donor","all"],
       active: true,
     },
     // {
@@ -47,7 +47,7 @@ export const navRoutes = (): NavItem[] => {
       icon: "eden-icon-search",
       label: "Find a Book",
       name: "find-book",
-      access: all,
+      access: all.concat(["all"]),
       active: true,
     },
     // {

@@ -50,19 +50,10 @@
             <template v-if="step === 2 && form.role === 'school'">
               <span class="text-cursor" @click="step = 1">
                 <el-icon :size="10" color="#000"> <arrow-left /> </el-icon><span class="font-md ml-1">Back</span></span>
-              <div class="text-center fw-bold">School's Location</div>
               <el-form-item class="mt-4" label="Country" prop="country">
-                <el-select class="styled-select" v-model="form.location.country" filterable @change="getStates">
-                  <el-option v-for="(country, index) in countries" :key="index" :label="country.name"
-                    :value="country.name">
-                    <span style="float: left">
-                      <img :style="{
-                        height: '15px',
-                        borderRadius: '2px',
-                      }" :src="locationImage(
-                          country.name === 'Nigeria' ? 'NG' : 'KE'
-                        )
-                          " alt="code" /></span>
+                <el-select class="styled-select" v-model="form.location.country" value-key="id" filterable @change="getStates">
+                  <el-option v-for="(country, index) in countries" :key="country.id" :label="country.name"
+                    :value="country" >
                     <span style="margin-left: 10px">{{ country.name }}</span>
                   </el-option>
                 </el-select>
@@ -78,7 +69,7 @@
               </el-form-item>
               <el-form-item class="" label="Library Book Limit
 " prop="libraryLimit">
-                <el-input type="text" v-model="form.location.libraryLimit" />
+                <el-input type="number" v-model="form.location.libraryLimit" />
               </el-form-item>
             </template>
           </el-form>
@@ -188,7 +179,8 @@ export default {
   },
   created() {
     getCountries().then((response) => {
-      this.countries = response.data.data;
+      console.log(response)
+      this.countries = response.data;
     });
   },
   computed: {
@@ -220,18 +212,17 @@ export default {
       });
     },
     locationImage(location) {
-      return getCountryFlag(`${location}.svg`);
+      return getCountryFlag(`${locjdation}.svg`);
     },
     getStates(value) {
       if (!value) {
         return;
       }
       console.log(value);
-      getStates(value).then((response) => {
+      getStates(value.iso2).then((response) => {
         // if(value === 113){
-        let state = value === 113 ? "Nairobi" : "Lagos";
-        this.states = response.data.data.filter((item) => item.name === state);
-        // }
+        console.log(response)
+        this.states = response.data
       });
     },
     getImageUrl(image) {
@@ -248,6 +239,7 @@ export default {
           ...this.form,
           name: this.form.first_name + " " + this.form.last_name,
         };
+        payload.location.country = payload.location.country.name;
         store
           .register(payload)
           .then((response) => {

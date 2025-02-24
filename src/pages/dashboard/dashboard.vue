@@ -24,14 +24,16 @@
         <div class="d-flex align-items-center">
           <i class="eden-icon-alert-circle me-2" style="color:#ff9d00"></i>
           <div>
-            <div>Disclaimer:<br/>The books provided through this platform are <span class="fw-bold">strictly for educational purposes</span> and must not
+            <div>Disclaimer:<br />The books provided through this platform are <span class="fw-bold">strictly for
+                educational purposes</span> and must not
               be
               <span class="fw-bold">sold, purchased, or exchanged for money</span> under any circumstances.
               If you notice any attempts to sell or monetize donated books, please report the violation immediately
               using
-              the button below.</div>
-            <el-button type="danger mt-2"><router-link :to="{ name: 'report-violation' }">Report Violations
-              </router-link></el-button>
+              the button below.
+            </div>
+            <el-button type="danger mt-2" @click="reportViolation()">Report Violations
+            </el-button>
           </div>
         </div>
       </eden-container>
@@ -60,10 +62,10 @@
           <RouterLink class="is-flex justify-between align-center" :to="{
             name: 'partner-schools',
           }">
-            <p class="">
-            <div>Active Partner Schools</div>
-            <div class="text-bold big-num">300</div>
-            </p>
+            <div class="">
+              <div>Active Partner Schools</div>
+              <div class="text-bold big-num">300</div>
+            </div>
             <span class="is-flex">
               <p class="text-grey-tertiary">
                 Become A Partner School
@@ -74,12 +76,12 @@
         </div>
         <div class="card-container">
           <RouterLink class="is-flex justify-between align-center" :to="{
-            name: 'partner-schools',
+            name: 'find-book',
           }">
-            <p class="">
-            <div>Books Available</div>
-            <div class="text-bold big-num">1,700</div>
-            </p>
+            <div class="">
+              <div>Books Available</div>
+              <div class="text-bold big-num">1,700</div>
+            </div>
             <span class="is-flex">
               <p class="text-grey-tertiary">
                 Find A Book
@@ -115,7 +117,13 @@ const router = useRouter();
 
 const loading = ref(false);
 const activeCard = ref(true);
-
+const reportViolation = () => {
+  if(user.value.email == "") {
+    ElMessage.error("Please sign up to report a violation");
+    return router.push({ name: 'register' });
+  }
+  router.push({ name: 'report-violation' });
+};
 const onboarding = computed(() => authStore.onboarding);
 const user = computed(() => authStore.authProfile);
 

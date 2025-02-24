@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="eden-crm--sidebar">
-      <div class="user">
+      <div v-if="user.email" class="user">
         <div class="user-info">
           <!-- <eden-avatar :src="'avatar.svg'" :size="26" /> -->
           <img :src="getImage('avatar.svg')" style="margin-left: 6px" />
           <div class="user-info--name">
             <div>{{ fullName }}</div>
-            <div class="cutText fw-bold mt-0">{{ user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "" }}</div>
+            <div class="cutText fw-bold mt-0">{{ user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : ""
+            }}</div>
           </div>
         </div>
         <el-dropdown popper-class="logout" :popper-options="{
@@ -35,13 +36,46 @@
           </template>
         </el-dropdown>
       </div>
+      <div v-else class="user">
+        <div class="user-info--name">
+          <div>Access account</div>
+        </div>
+        <el-dropdown popper-class="logout" :popper-options="{
+          modifiers: [
+            { name: 'offset', options: { offset: [-80, 25] } },
+            {
+              name: 'arrow',
+              options: {
+                padding: 500, // 5px from the edges of the popper
+              },
+            },
+          ],
+        }">
+          <span class="el-dropdown-link">
+            <el-icon class="eden-icon-arrow-down">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu class="logout">
+              <el-dropdown-item class="text-success" icon="eden-icon-logout" @click="routeUser('login')">
+                <!-- <i class="text-red-primary eden-icon-logout"></i> -->
+                Log in</el-dropdown-item>
+              <el-dropdown-item class="text-success" icon="eden-icon-logout" @click="routeUser('register')">
+                <!-- <i class="text-red-primary eden-icon-logout"></i> -->
+                Register</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
       <div class="sidebar-routes">
         <el-menu :default-active="nav" :router="true">
           <template v-for="(route, index) in navRoutes">
             <template v-if="!route.sub_routes">
-              <el-menu-item v-if="route.access.includes(user.role)" :key="index" :index="route.name" :route="{
-                name: `${route.name}`,
-              }">
+              <el-menu-item v-if="route.access.includes(user.role) || (route.access.includes('all') && user.role=='')" :key="index"
+                :index="route.name" :route="{
+                  name: `${route.name}`,
+                }">
                 <span class="icon">
                   <i :class="`${route.icon}`"></i>
                 </span>
@@ -117,12 +151,15 @@ const logout = () => {
   localStorage.removeItem("books-for-all-onboarding-position");
   router.push({ name: "login" });
 };
+const routeUser = (route) => {
+  router.push({ name: route });
+};
 
 const closeSidebar = () => { };
 
 const setNav = () => {
-  const { module } = route.meta;
-  nav.value = (module ?? "") as string;
+  console.log(route)
+  nav.value = route.name;
   console.log(nav.value);
 };
 
