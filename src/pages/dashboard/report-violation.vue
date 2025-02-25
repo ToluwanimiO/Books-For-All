@@ -1,5 +1,5 @@
 <template>
-  <eden-page-header :title="'Report a Violation'" />
+  <eden-page-header title="Report a Violation" />
 
   <div class="max-w-2xl col-10 mt-5  mx-auto bg-white shadow-md rounded-lg">
 

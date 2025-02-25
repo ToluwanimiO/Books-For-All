@@ -1,5 +1,5 @@
 <template>
-  <eden-page-header :title="'Partner Schools'" />
+  <eden-page-header title="Partner Schools" />
   <div class="mt-4 pt-4">
     <eden-loader v-if="loading" />
     <div v-else>

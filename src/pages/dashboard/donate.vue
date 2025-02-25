@@ -1,7 +1,8 @@
 <template>
-  <eden-page-header :title="'Donate'" />
+  <eden-page-header title="Donate" />
   <div class="px-6 pb-5">
     <el-card class="donation-form">
+      <el-alert v-if="!isDonor" class="mb-2" title="Please log in as a donor to donate any book" type="warning" />
       <h2 class="text-xl font-semibold mb-4">Donate Books to a School</h2>
 
       <el-form label-width="120px">
@@ -41,7 +42,7 @@
         </el-form-item>
       </el-form>
       <el-form-item>
-        <el-button type="primary" @click="addBook">Add Book</el-button>
+        <el-button type="primary" :disabled="!isDonor" @click="addBook">Add Book</el-button>
       </el-form-item>
 
 
@@ -60,7 +61,7 @@
         </el-table-column>
       </el-table>
 
-      <el-button type="success" style="margin-top: 20px" :disabled="donationList.length === 0" @click="submitDonation">
+      <el-button :loading="loading" type="success" style="margin-top: 20px" :disabled="donationList.length === 0" @click="submitDonation">
         Submit Donation
       </el-button>
     </el-card>
@@ -68,7 +69,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watchEffect } from "vue";
+import { ref, reactive, watchEffect,computed } from "vue";
 import { ElMessage } from "element-plus";
 import { getAllSchools } from "@/requests/auth";
 import { useAuthStore } from "@/store/auth";
@@ -82,6 +83,7 @@ const selectedSchool = ref(null);
 const book = reactive({ title: "", author: "", subject: "", gradeLevel: "", quantity: 1 });
 const donationList = ref([]);
 const schools = ref([]);
+const loading = ref(false);
 
 // Fetch schools on mount
 watchEffect(() => {
@@ -95,6 +97,7 @@ watchEffect(() => {
       console.error("Error:", err);
     });
 });
+const isDonor = computed(() => authStore.authProfile.role=='donor');
 
 // Add a book to donation list
 const addBook = () => {
@@ -125,17 +128,19 @@ const submitDonation = () => {
     ElMessage.error("Please add a book.");
     return;
   }
+  loading.value = true;
   donateBooks(donationList.value)
     .then((response) => {
       console.log("Response:", response);
       ElMessage.success({ message: response.data.message || "Donation submitted successfully!" });
 
-
+      loading.value = false;
       // Reset form
       donationList.value = [];
       selectedSchool.value = null;
     })
     .catch((err) => {
+      loading.value = false;
       console.error("Error:", err);
       ElMessage.error({ message: err.response?.data?.message || "Error donating books. Please try again." });
     });

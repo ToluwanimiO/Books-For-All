@@ -1,5 +1,5 @@
 <template>
-  <eden-page-header :title="loading ? '' : 'Dashboard'" />
+  <eden-page-header title="Dashboard" />
   <el-row :gutter="15">
     <el-col :md="12">
       <eden-container class="text-center p-10">
