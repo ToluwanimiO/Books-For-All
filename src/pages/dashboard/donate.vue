@@ -61,7 +61,8 @@
         </el-table-column>
       </el-table>
 
-      <el-button :loading="loading" type="success" style="margin-top: 20px" :disabled="donationList.length === 0" @click="submitDonation">
+      <el-button :loading="loading" type="success" style="margin-top: 20px" :disabled="donationList.length === 0"
+        @click="submitDonation">
         Submit Donation
       </el-button>
     </el-card>
@@ -69,7 +70,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watchEffect,computed } from "vue";
+import { ref, reactive, watchEffect, computed } from "vue";
 import { ElMessage } from "element-plus";
 import { getAllSchools } from "@/requests/auth";
 import { useAuthStore } from "@/store/auth";
@@ -80,7 +81,7 @@ const authStore = useAuthStore();
 
 // Reactive state
 const selectedSchool = ref(null);
-const book = reactive({ title: "", author: "", subject: "", gradeLevel: "", quantity: 1 });
+const book = reactive({ title: "", author: "", subject: "", gradeLevel: "", quantity: 1, isbn: "", description: "" });
 const donationList = ref([]);
 const schools = ref([]);
 const loading = ref(false);
@@ -97,7 +98,7 @@ watchEffect(() => {
       console.error("Error:", err);
     });
 });
-const isDonor = computed(() => authStore.authProfile.role=='donor');
+const isDonor = computed(() => authStore.authProfile.role == 'donor');
 
 // Add a book to donation list
 const addBook = () => {
@@ -111,7 +112,7 @@ const addBook = () => {
     donationList.value.push(newBook);
 
     // Reset book form
-    Object.assign(book, { title: "", author: "", subject: "", gradeLevel: "", quantity: 1, isbn: "", description });
+    Object.assign(book, { title: "", author: "", subject: "", gradeLevel: "", quantity: 1, isbn: "", description: "" });
   } else {
     ElMessage.warning("Please fill in all book details.");
   }

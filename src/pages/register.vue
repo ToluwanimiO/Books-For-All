@@ -124,7 +124,7 @@ export default {
           state: "",
           address: "",
         },
-        libraryLimit: 0,
+        libraryLimit: 1,
         email: "",
         password: "",
         role: "",
