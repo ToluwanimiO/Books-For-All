@@ -1,7 +1,7 @@
 <template>
   <div>
     <eden-page-header title="Find A Book" />
-    <eden-page-stats :title="'Overview'" :stats="stats" class="my-0" :loading="summary.loading" />
+    <!-- <eden-page-stats :title="'Overview'" :stats="stats" class="my-0" :loading="summary.loading" /> -->
     <books-table />
 
   </div>
@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import EdenPageHeader from "@/components/Global/EdenPageHeader.vue";
-import EdenPageStats from "@/components/Global/EdenPageStats.vue";
+// import EdenPageStats from "@/components/Global/EdenPageStats.vue";
 import BooksTable from "@/components/Books/BooksTable.vue";
 import usePermissions from "@/composables/permissions";
 import useSupport from "@/composables/support";

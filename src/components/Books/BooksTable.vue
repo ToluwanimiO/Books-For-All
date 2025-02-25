@@ -148,6 +148,7 @@ import useSorting from "@/composables/sorting";
 
 import { useRouter } from "vue-router";
 import { ROUTES } from "@/router/route-names";
+import { getAllBooks } from "@/requests/dashboard";
 
 const { formatDate } = useDate();
 const { sortList } = useSupport();
@@ -168,7 +169,7 @@ const books = ref([
     author: "Isaac Newton",
     subject: "Physics",
     gradeLevel: "Senior Secondary 1",
-    school: { _id: "1", name: "Bright Future Academy" },
+    school: { _id: "1", name: "Test School" },
     status: "available",
     donatedBy: { _id: "101", name: "John Doe" },
     isbn: "978-3-16-148410-0",
@@ -179,7 +180,7 @@ const books = ref([
     author: "Leonhard Euler",
     subject: "Mathematics",
     gradeLevel: "Senior Secondary 3",
-    school: { _id: "2", name: "Springfield High" },
+    school: { _id: "2", name: "Test School" },
     status: "claimed",
     donatedBy: { _id: "102", name: "Jane Smith" },
     isbn: "978-1-23-456789-7",
@@ -190,7 +191,7 @@ const books = ref([
     author: "Marie Curie",
     subject: "Chemistry",
     gradeLevel: "Junior Secondary 2",
-    school: { _id: "3", name: "Greenwood Academy" },
+    school: { _id: "3", name: "Example School" },
     status: "available",
     donatedBy: { _id: "103", name: "Anonymous" },
     isbn: "978-0-12-345678-9",
@@ -201,7 +202,7 @@ const books = ref([
     author: "Howard Zinn",
     subject: "History",
     gradeLevel: "Senior Secondary 2",
-    school: { _id: "4", name: "Royal Crest College" },
+    school: { _id: "4", name: "Test School" },
     status: "claimed",
     donatedBy: { _id: "104", name: "Michael Brown" },
     isbn: "978-4-56-789012-3",
@@ -212,7 +213,7 @@ const books = ref([
     author: "Alan Turing",
     subject: "Computer Science",
     gradeLevel: "Junior Secondary 3",
-    school: { _id: "5", name: "Tech Innovators School" },
+    school: { _id: "5", name: "Example School" },
     status: "available",
     donatedBy: { _id: "105", name: "Emily White" },
     isbn: "978-5-67-890123-4",
@@ -406,13 +407,14 @@ const setPageData = () => {
   };
 };
 
-const getEmployees = () => {
+const getBooks = () => {
   loading.value = true;
 
-  employeesStore
-    .list()
-    .then(() => {
-      setPageData();
+  getAllBooks()
+    .then((response) => {
+      console.log(response)
+      books.value = books.value.concat(response.data)
+      setPageData()
       loading.value = false;
     })
     .catch((error) => {
@@ -437,10 +439,10 @@ const goToEmployee = (id: number) => {
 };
 
 watch(page, () => {
-  getEmployees();
+  getBooks();
 });
 
 onMounted(() => {
-  getEmployees();
+  getBooks();
 });
 </script>

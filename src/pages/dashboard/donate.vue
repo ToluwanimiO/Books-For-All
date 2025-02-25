@@ -1,132 +1,157 @@
 <template>
-  <eden-page-header :title="loading ? '' : 'Donate'" />
-  <div>Donate</div>
+  <eden-page-header :title="'Donate'" />
+  <div class="px-6 pb-5">
+    <el-card class="donation-form">
+      <h2 class="text-xl font-semibold mb-4">Donate Books to a School</h2>
+
+      <el-form label-width="120px">
+        <!-- Select School -->
+        <el-form-item label="Select School">
+          <el-select v-model="selectedSchool" placeholder="Choose a school" style="width: 100%">
+            <el-option v-for="school in schools" :key="school.id"
+              :label="school.name + ', (' + school.location.address + ')'" :value="school._id" />
+          </el-select>
+        </el-form-item>
+
+        <!-- Book Details -->
+        <el-form-item label="ISBN (optional)">
+          <el-input v-model="book.isbn" placeholder="Enter ISBN" />
+        </el-form-item>
+        <el-form-item label="Book Title">
+          <el-input v-model="book.title" placeholder="Enter book title" />
+        </el-form-item>
+
+        <el-form-item label="Author">
+          <el-input v-model="book.author" placeholder="Enter author's name" />
+        </el-form-item>
+
+        <el-form-item label="Subject (optional)">
+          <el-input v-model="book.subject" placeholder="Enter subject (e.g. Math, Science)" />
+        </el-form-item>
+
+        <el-form-item label="Grade Level (optional)">
+          <el-input v-model="book.gradeLevel" placeholder="Enter grade (e.g. JS1, SS2)" />
+        </el-form-item>
+
+        <el-form-item label="Quantity">
+          <el-input-number v-model="book.quantity" :min="1" />
+        </el-form-item>
+        <el-form-item label="Book Description (optional)">
+          <el-input v-model="book.description" type="textarea" placeholder="Enter book description" rows="4" />
+        </el-form-item>
+      </el-form>
+      <el-form-item>
+        <el-button type="primary" @click="addBook">Add Book</el-button>
+      </el-form-item>
+
+
+      <!-- Books Table -->
+      <el-table :data="donationList" border style="margin-top: 20px">
+        <el-table-column prop="title" label="Book Title"></el-table-column>
+        <el-table-column prop="isbn" label="ISBN"></el-table-column>
+        <el-table-column prop="author" label="Author"></el-table-column>
+        <el-table-column prop="subject" label="Subject"></el-table-column>
+        <el-table-column prop="gradeLevel" label="Grade Level"></el-table-column>
+        <el-table-column class="w-100" prop="quantity" label="Quantity"></el-table-column>
+        <el-table-column label="Actions">
+          <template #default="{ row, $index }">
+            <el-button type="danger" size="small" @click="removeBook($index)">Remove</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+
+      <el-button type="success" style="margin-top: 20px" :disabled="donationList.length === 0" @click="submitDonation">
+        Submit Donation
+      </el-button>
+    </el-card>
+  </div>
 </template>
 
-<script lang="ts" setup>
-import { verifyAccount } from "../../requests/auth";
-import { useAuthStore } from "../../store/auth";
-import EdenContentLoader from "../../components/Global/EdenContentLoader.vue";
-import EdenCard from "../../components/Global/EdenCard.vue";
-import { computed, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+<script setup>
+import { ref, reactive, watchEffect } from "vue";
 import { ElMessage } from "element-plus";
-// import EdenPageHeader from "@/components/Global/EdenPageHeader.vue";
-import { getSubscriptions } from "@/requests/subscriptions";
+import { getAllSchools } from "@/requests/auth";
+import { useAuthStore } from "@/store/auth";
+import { donateBooks } from "@/requests/dashboard";
+
+// Store reference
 const authStore = useAuthStore();
 
-const route = useRoute();
-const router = useRouter();
+// Reactive state
+const selectedSchool = ref(null);
+const book = reactive({ title: "", author: "", subject: "", gradeLevel: "", quantity: 1 });
+const donationList = ref([]);
+const schools = ref([]);
 
-const loading = ref(false);
-const activeCard = ref(true);
-
-const onboarding = computed(() => authStore.onboarding);
-const user = computed(() => authStore.authProfile);
-
-const fullName = computed(() => {
-  console.log(user);
-  if (user.value.first_name == null) {
-    return "";
-  }
-  let fname =
-    user.value.first_name && user.value.first_name != null
-      ? user.value.first_name
-      : "";
-  return fname;
+// Fetch schools on mount
+watchEffect(() => {
+  console.log(authStore.authProfile?.id)
+  getAllSchools()
+    .then((response) => {
+      console.log("Response:", response);
+      schools.value = response.data;
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    });
 });
 
-const companyProfile = computed(() => authStore.companyProfile);
+// Add a book to donation list
+const addBook = () => {
+  if (book.title && book.author && selectedSchool.value) {
+    const newBook = {
+      ...book,
+      school: selectedSchool.value,
+      donatedBy: authStore.authProfile?.id
+    };
 
-const goBack = () => {
-  router.back();
-};
-const subscriptions = ref([]);
-const setActiveCard = () => {
-  activeCard.value = !activeCard.value;
-};
+    donationList.value.push(newBook);
 
-const goHome = () => {
-  // const role = this.$store.getters.user_role;
-
-  // if (role) {
-  //   if (["steward", "ofa"].includes(this.role)) {
-  //     this.$router.push({ name: "production-provisions.index" });
-  //   } else {
-  //     this.$router.push({ name: "customers.index" });
-  //   }
-  // } else {
-  router.push({ name: "login" });
-  // }
+    // Reset book form
+    Object.assign(book, { title: "", author: "", subject: "", gradeLevel: "", quantity: 1, isbn: "", description });
+  } else {
+    ElMessage.warning("Please fill in all book details.");
+  }
 };
 
-onMounted(() => {});
+// Remove book from donation list
+const removeBook = (index) => {
+  donationList.value.splice(index, 1);
+};
+
+// Submit donation
+const submitDonation = () => {
+  if (!donationList.value.length) {
+    ElMessage.error("Please add a book.");
+    return;
+  }
+  donateBooks(donationList.value)
+    .then((response) => {
+      console.log("Response:", response);
+      ElMessage.success({ message: response.data.message || "Donation submitted successfully!" });
+
+
+      // Reset form
+      donationList.value = [];
+      selectedSchool.value = null;
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      ElMessage.error({ message: err.response?.data?.message || "Error donating books. Please try again." });
+    });
+
+};
 </script>
 
-<style scoped lang="scss">
-.eden-error {
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  h1 {
-    font-size: 3.5rem;
-    color: #21312a;
-    margin-bottom: 20px;
-    line-height: 0.6;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    font-size: 2rem;
-  }
-
-  &__actions {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-  }
-}
-.welcome {
-  font-size: 24px;
-  margin-top: 70px;
-  margin-bottom: 10px;
-}
-.container-sub-card {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 5%;
-}
-.sub-card {
-  /* White */
-  /* Greys/Senary */
-
-  border: 1px solid #e2e9e6;
-  border-radius: 7px !important;
+<style scoped>
+.p-6 {
   padding: 24px;
-  gap: 8px;
+}
 
-  width: 31%;
-  height: 240px;
-  font-size: 15px;
-}
-a {
-  color: white;
-}
-.long-card {
-  padding: 40px 32px 30px 32px;
-  height: 340px;
-}
-.d-none {
-  display: none !important;
-}
-.d-block {
-  display: block !important;
-}
-.active {
-  border: 1px solid #6ece8a !important;
+.donation-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
 }
 </style>

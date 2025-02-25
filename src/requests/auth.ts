@@ -21,3 +21,6 @@ export function resetPassword(payload:any) {
 export function forgotPassword(payload:any) {
   return axios.post(`users/forgot_password`,payload);
 }
+export function getAllSchools() {
+  return axios.get(`auth/schools`);
+}

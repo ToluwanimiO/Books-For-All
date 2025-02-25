@@ -69,7 +69,7 @@
               </el-form-item>
               <el-form-item class="" label="Library Book Limit
 " prop="libraryLimit">
-                <el-input type="number" v-model="form.location.libraryLimit" />
+                <el-input-number v-model="form.libraryLimit" />
               </el-form-item>
             </template>
           </el-form>
@@ -124,7 +124,7 @@ export default {
           state: "",
           address: "",
         },
-        libraryLimit: "",
+        libraryLimit: 0,
         email: "",
         password: "",
         role: "",
@@ -212,7 +212,7 @@ export default {
       });
     },
     locationImage(location) {
-      return getCountryFlag(`${locjdation}.svg`);
+      return getCountryFlag(`${location}.svg`);
     },
     getStates(value) {
       if (!value) {
