@@ -28,12 +28,12 @@
                 educational purposes</span> and must not
               be
               <span class="fw-bold">sold, purchased, or exchanged for money</span> under any circumstances.
-              If you notice any attempts to sell or monetize donated books, please report the violation immediately
+              <!-- If you notice any attempts to sell or monetize donated books, please report the violation immediately
               using
-              the button below.
+              the button below. -->
             </div>
-            <el-button type="danger mt-2" @click="reportViolation()">Report Violations
-            </el-button>
+            <!-- <el-button type="danger mt-2" @click="reportViolation()">Report Violations
+            </el-button> -->
           </div>
         </div>
       </eden-container>
@@ -82,12 +82,12 @@
               <div>Books Available</div>
               <div class="text-bold big-num">1,700</div>
             </div>
-            <span class="is-flex">
+            <!-- <span class="is-flex">
               <p class="text-grey-tertiary">
                 Find A Book
               </p>
               <span class="icon-position eden-icon-arrow-right"></span>
-            </span>
+            </span> -->
           </RouterLink>
         </div>
       </eden-container>

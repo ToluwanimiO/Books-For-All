@@ -6,11 +6,11 @@
         Welcome to BooksForAll! Your gateway to equitable book access.
       </div>
     </div>
-    <router-link :to="{ name: 'find-book' }">
+    <!-- <router-link :to="{ name: 'find-book' }">
       <div class="row justify-content-center mx-auto text-center">
         <div class="col-md-4 boxed mt-4">I’m a Student</div>
       </div>
-    </router-link>
+    </router-link> -->
     <router-link :to="{ name: 'donate' }">
       <div class="row justify-content-center mx-auto text-center">
         <div class="col-md-4 boxed mt-4">I’m a Donor</div>

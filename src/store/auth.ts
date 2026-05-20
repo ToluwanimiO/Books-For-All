@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
-import type { User, LoginForm, SignUpForm } from "@/types";
-import { login, register } from "@/requests/auth";
+import type { User, AuthCredentials, SignUpForm } from "@/types";
+import { login, registerUser, updateProfileRequest } from "@/requests/auth";
 import { getCompanyInfo } from "@/requests/onboarding";
 import { CompanyInfoInterface } from "@/types";
 
@@ -8,7 +8,8 @@ export const useAuthStore = defineStore({
   id: "auth",
   state: () => {
     return {
-      user: {} as User,
+      // user: {} as User,
+      user: {} as any,
       token: null as string | null,
       companyInfo: {} as CompanyInfoInterface,
     };
@@ -88,7 +89,7 @@ export const useAuthStore = defineStore({
     },
   },
   actions: {
-    login(payload: LoginForm) {
+    login(payload: AuthCredentials) {
       console.log("hi");
       return new Promise((resolve, reject) => {
         login(payload)
@@ -115,31 +116,30 @@ export const useAuthStore = defineStore({
           });
       });
     },
-    register(payload: SignUpForm) {
-      console.log("hi");
-      return new Promise((resolve, reject) => {
-        register(payload)
-          .then((response: any) => {
-            console.log(response);
-            if (response.status) {
-              const data = response.data.user;
-              const token = response.data.token;
-              // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-              localStorage.setItem(
-                "books-for-all-token",
-                JSON.stringify(token)
-              );
-              localStorage.setItem("books-for-all-user", JSON.stringify(data));
-              localStorage.setItem("books-for-all-user-role", data.role);
-              this.user = data;
-              this.token = token;
-            }
-            resolve(response);
-          })
-          .catch((error: any) => {
-            reject(error);
-          });
-      });
+    async register(payload: AuthCredentials) {
+        const response =  await registerUser(payload)
+        const data = response.user;
+        const token = await data.getIdToken()
+        // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        localStorage.setItem("books-for-all-user", JSON.stringify(data));
+        localStorage.setItem("books-for-all-token",JSON.stringify(token))
+        // localStorage.setItem("books-for-all-user-role", data.role);
+        this.user = data;
+        this.token = token;
+        return response
+    },
+    async updateProfile(payload: any) {
+      try{
+        const response = await updateProfileRequest(payload)
+        const updatedData = { ...this.user, ...payload.data };
+        localStorage.setItem("books-for-all-user", JSON.stringify(updatedData));
+        this.user = updatedData;
+        return response
+      }
+      catch (error) {
+        console.error("Error updating profile:", error);
+        throw error;
+      }
     },
     getCompanyInfo(id: any) {
       return new Promise((resolve, reject) => {

@@ -34,7 +34,7 @@ export interface OptionItem {
   value: string;
 }
 
-export interface LoginForm {
+export interface AuthCredentials {
   email: string;
   password: string;
 }

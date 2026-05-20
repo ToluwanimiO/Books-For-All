@@ -4,10 +4,6 @@ export function login(payload:any) {
   console.log(payload)
   return axios.post("auth/login", payload);
 }
-export function register(payload:any) {
-  console.log(payload)
-  return axios.post(`auth/register`, payload);
-}
 export function resendEmail(payload:any) {
   return axios.post(`users/resend_verification`, payload);
 }
@@ -23,4 +19,15 @@ export function forgotPassword(payload:any) {
 }
 export function getAllSchools() {
   return axios.get(`auth/schools`);
+}
+
+import {register, updateUserData} from "@/services/firebase"
+import { AuthCredentials } from "@/types";
+
+export const registerUser = async (payload:AuthCredentials) =>{
+  return await register(payload)
+}
+
+export const updateProfileRequest = async (payload:any)=>{
+  return await updateUserData(payload.uid, payload.data)
 }

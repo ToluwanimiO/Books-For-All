@@ -119,15 +119,16 @@ export default {
       form: {
         first_name: "",
         last_name: "",
-        location: {
-          country: "",
-          state: "",
-          address: "",
-        },
-        libraryLimit: 1,
+        // location: {
+        //   country: "",
+        //   state: "",
+        //   address: "",
+        // },
+        // libraryLimit: 1,
         email: "",
         password: "",
         role: "",
+        phone_no:""
       },
       loading: false,
       googleLoading: false,
@@ -228,71 +229,43 @@ export default {
     getImageUrl(image) {
       return getImage(image);
     },
-    register() {
-      this.$refs.form.validate((valid) => {
-        if (!valid) {
-          return;
-        }
-        console.log(this.form);
-        this.loading = true;
-        let payload = {
-          ...this.form,
-          name: this.form.first_name + " " + this.form.last_name,
+    async register() {
+      this.loading = true;
+      try{
+        const valid = await new Promise((resolve)=>{
+          this.$refs.form.validate((v)=>resolve(v))
+        })
+        if (!valid) return
+        let registerPayload = {
+          email: this.form.email,
+          password: this.form.password,
         };
-        payload.location.country = payload.location.country.name;
-        store
-          .register(payload)
-          .then((response) => {
-            console.log(response);
-            this.$message.success(response.data.message);
-            this.$router.push({
-              name: "dashboard",
-            });
-            this.loading = false;
-          })
-          .catch((err) => {
-            console.log(err);
-            // let keys = this.$message.error(err.response.data.errors.join("\n"));
-            let error = err.response.data.errors;
-            console.log(error);
-            if (error) {
-              //       this.$message.error(errorMessage.errors.join("\n"));
-              //     } else {
-              //       this.$message.error(errorMessage.message);
-              //     }
-              let keys = Object.keys(error);
-              let arr = keys.map((key) => {
-                return error[key];
-              });
-              this.$message.error(arr.join("\n"));
-            } else {
-              this.$message.error(err.response.data.message);
-            }
-            this.loading = false;
-          });
-        // auth
-        //   .register(payload)
-        //   .then((response) => {
-        //     this.loading = false;
-        //     const successMessage = response.data.message;
-        //     this.$message({
-        //       message: successMessage,
-        //       type: "success",
-        //     });
-        //     this.$store.dispatch(actions.LOGIN, loginPayload).then(() => {
-        //       this.$router.push({ name: "home" });
-        //     });
-        //   })
-        //   .catch((error) => {
-        //     this.loading = false;
-        //     const errorMessage = error.response.data;
-        //     if (errorMessage.errors) {
-        //       this.$message.error(errorMessage.errors.join("\n"));
-        //     } else {
-        //       this.$message.error(errorMessage.message);
-        //     }
-        //   });
-      });
+        let profilePayload = {
+          first_name: this.form.first_name,
+          last_name: this.form.last_name,
+          role: this.form.role,
+          phone_no:this.form.phone_no
+        };
+        
+        const response = await store.register(registerPayload)
+        console.log(response);
+        const resp = await store.updateProfile({
+          uid: response.user.uid,
+          data: profilePayload
+        })
+        this.$message.success("Account created successfully");
+        // this.$router.push({
+          //   name: "dashboard",
+          // });
+          // this.loading = false;
+      } catch (err) {
+        console.log(err.message)
+        this.$message.error(err.message)
+
+      } finally {
+        this.loading = false
+      }
+      
     },
     showPassword() {
       if (this.type === "password") {

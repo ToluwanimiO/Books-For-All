@@ -43,13 +43,13 @@ export const navRoutes = (): NavItem[] => {
     //   access: all.concat(["kitchen", "gardener"]),
     //   active: true,
     // },
-    {
-      icon: "eden-icon-search",
-      label: "Find a Book",
-      name: "find-book",
-      access: all.concat(["all"]),
-      active: true,
-    },
+    // {
+    //   icon: "eden-icon-search",
+    //   label: "Find a Book",
+    //   name: "find-book",
+    //   access: all.concat(["all"]),
+    //   active: true,
+    // },
     // {
     //   icon: "eden-icon-orders",
     //   label: "Register New School ",
