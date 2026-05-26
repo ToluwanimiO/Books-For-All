@@ -40,12 +40,12 @@ export interface AuthCredentials {
 }
 
 export interface SignUpForm {
-  name: string;
-  location: { country: string; state: string; address: string };
-  availableBooks: number;
-  email: string;
-  password: string;
-  role: string;
+  first_name: string,
+  last_name: string,
+  email: string,
+  password: string,
+  role: string,
+  phone_no: string,
 }
 
 export interface User {
