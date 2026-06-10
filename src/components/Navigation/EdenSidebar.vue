@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="eden-crm--sidebar">
-      <div v-if="user.email" class="user">
+      <div v-if="user" class="user">
         <div class="user-info">
           <!-- <eden-avatar :src="'avatar.svg'" :size="26" /> -->
           <img :src="getImage('avatar.svg')" style="margin-left: 6px" />
@@ -127,8 +127,8 @@ const fullName = computed(() => {
   if (user.value == null || !Object.keys(user.value).length) {
     return "";
   }
-
-  return user.value.name;
+  
+  return `${user.value?.first_name} ${user.value?.last_name}`;
 });
 
 const onboarding = computed(() => store.onboarding);

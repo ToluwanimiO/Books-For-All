@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
 
 import type { User, AuthCredentials, SignUpForm } from "@/types";
-import { registerUser, updateProfileRequest, loginUser, logOutUser} from "@/requests/auth";
+import { registerUser, createProfileRequest, loginUser, logOutUser, getUserProfileRequest} from "@/requests/auth";
 import { getCompanyInfo } from "@/requests/onboarding";
 import { CompanyInfoInterface } from "@/types";
 
@@ -17,27 +17,8 @@ export const useAuthStore = defineStore("auth",{
   },
   getters: {
     authProfile(state) {
-      return state.authUser;
-      if (state.authUser.email) {
-        return state.authUser;
-      }
-      const storage = localStorage.getItem("books-for-all-user") as string;
-      if (storage) {
-        return JSON.parse(storage);
-      } else {
-        return {
-          name: "",
-          location: {
-            country: "",
-            state: "",
-            address: "",
-          },
-          libraryLimit: "",
-          email: "",
-          password: "",
-          role: "",
-        };
-      }
+      console.log(state.profileUser);
+      return state.profileUser;
     },
     companyProfile(state) {
       return {
@@ -91,7 +72,6 @@ export const useAuthStore = defineStore("auth",{
     },
     isLoggedIn(state){
       console.log(state.authUser);
-      
       return !!state.authUser;
     }
   },
@@ -100,29 +80,26 @@ export const useAuthStore = defineStore("auth",{
         const response =  await loginUser(payload)
         console.log(response);
         const data = response.user;
-        localStorage.setItem("books-for-all-user", JSON.stringify(data));
-        // localStorage.setItem("books-for-all-user-role", data.role);
         this.authUser = data;
+        const profile = await getUserProfileRequest(data.uid)
+        console.log(profile);
+        this.profileUser = profile
         return response
     },
     async register(payload: AuthCredentials) {
         const response =  await registerUser(payload)
         const data = response.user;
-        localStorage.setItem("books-for-all-user", JSON.stringify(data));
-        // localStorage.setItem("books-for-all-user-role", data.role);
         this.authUser = data;
         return response
     },
-    async updateProfile(payload: any) {
+    async createProfile(payload: any) {
       try{
-        const response = await updateProfileRequest(payload)
-        const updatedData = { ...this.authUser, ...payload.data };
-        localStorage.setItem("books-for-all-user", JSON.stringify(updatedData));
-        this.authUser = updatedData;
+        const response = await createProfileRequest(payload)
+        this.profileUser = payload.data;
         return response
       }
       catch (error) {
-        console.error("Error updating profile:", error);
+        console.error("Error creating profile:", error);
         throw error;
       }
     },
@@ -159,6 +136,7 @@ export const useAuthStore = defineStore("auth",{
     async logOut(){
       await logOutUser()
       this.authUser = null
+      this.profileUser = null;
       // localStorage.removeItem("books-for-all-user");
       // localStorage.removeItem("books-for-all-company-profile");
       // localStorage.removeItem("books-for-all-onboarding-position");
@@ -167,7 +145,7 @@ export const useAuthStore = defineStore("auth",{
   persist: {
     key: "books-for-all-auth",
     storage: localStorage,
-    pick: ["authUser"],
+    pick: ["authUser","profileUser"],
   }
 });
 

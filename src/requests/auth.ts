@@ -18,13 +18,16 @@ export function getAllSchools() {
 }
 
 // new start
-import {login, register, updateUserData, logOut} from "@/services/firebase"
+import {login, register, createUserData, logOut, getUserProfile} from "@/services/firebase"
 import { AuthCredentials } from "@/types";
 
 export const registerUser =  (payload:AuthCredentials) => register(payload)
 export const loginUser =  (payload:AuthCredentials) => login(payload)
 export const logOutUser = () => logOut()
 
-export const updateProfileRequest = async (payload:any)=>{
-  return await updateUserData(payload.uid, payload.data)
+export const createProfileRequest = async (payload:any)=>{
+  return await createUserData(payload.uid, payload.data)
+}
+export const getUserProfileRequest = async (uid:any) => {
+  return await getUserProfile(uid)
 }

@@ -87,8 +87,7 @@ const login = async (formElement:FormInstance | undefined) => {
   }
   loading.value = true;
   try{
-    const response = await store.login(form);
-    console.log(response);
+    await store.login(form);
     router.push({ name: "dashboard" });
   }
   catch (err: any) {

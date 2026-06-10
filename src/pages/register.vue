@@ -175,7 +175,7 @@ const register = async (formEl: FormInstance | undefined) => {
       phone_no: form.phone_no,
     };
     const response = await store.register(registerPayload);
-    await store.updateProfile({
+    await store.createProfile({
       uid: response.user.uid,
       data: profilePayload,
     });
