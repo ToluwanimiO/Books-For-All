@@ -52,15 +52,6 @@
               </div>
             </el-form-item>
             <el-form-item class="" label="Phone number" prop="phone_no">
-              <!-- <el-select class="styled-select" v-model="selected_calling_code" filterable>
-                <el-option
-                  v-for="(country, index) in CALLING_CODES"
-                  :key="index"
-                  :label="country.callingCode"
-                  :value="country.callingCode"
-                >
-                </el-option>
-              </el-select> -->
               <el-input type="text" v-model="form.phone_no" />
             </el-form-item>
           </el-form>
@@ -88,16 +79,16 @@ import { useAuthStore } from "@/store/auth";
 import { computed, reactive, ref } from "vue";
 import { ElMessage, FormInstance, FormRules } from "element-plus";
 import { SignUpForm } from "@/types";
-import { CALLING_CODES } from "@/constants/countries";
+import { useRouter } from "vue-router";
 
 const store = useAuthStore();
 const loading = ref(false);
+const router = useRouter();
 
 const allRoles = ref([
   { label: "Donor", value: "donor" },
   { label: "School Admin", value: "school" },
 ]);
-const selected_calling_code = ref("")
 const formRef = ref<FormInstance>();
 const form = reactive<SignUpForm>({
   first_name: "",
@@ -171,8 +162,8 @@ const register = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   const isValid = await formEl.validate();
   if (!isValid) return;
+  loading.value = true;
   try {
-    loading.value = true;
     const registerPayload = {
       email: form.email,
       password: form.password,
@@ -189,10 +180,9 @@ const register = async (formEl: FormInstance | undefined) => {
       data: profilePayload,
     });
     ElMessage.success("Account created successfully");
-    // this.$router.push({
-    //   name: "dashboard",
-    // });
-    // this.loading = false;
+    router.push({
+      name: "dashboard",
+    });
   } catch (err: any) {
     console.log(err);
     ElMessage.error(

@@ -145,10 +145,7 @@ const onboardingAcess = computed(() => ({
 }));
 
 const logout = () => {
-  localStorage.removeItem("books-for-all-token");
-  localStorage.removeItem("books-for-all-user");
-  localStorage.removeItem("books-for-all-company-profile");
-  localStorage.removeItem("books-for-all-onboarding-position");
+  store.logOut();
   router.push({ name: "login" });
 };
 const routeUser = (route: any) => {

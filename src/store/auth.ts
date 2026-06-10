@@ -1,23 +1,25 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
+
 import type { User, AuthCredentials, SignUpForm } from "@/types";
-import { login, registerUser, updateProfileRequest } from "@/requests/auth";
+import { registerUser, updateProfileRequest, loginUser, logOutUser} from "@/requests/auth";
 import { getCompanyInfo } from "@/requests/onboarding";
 import { CompanyInfoInterface } from "@/types";
 
-export const useAuthStore = defineStore({
-  id: "auth",
+export const useAuthStore = defineStore("auth",{
+
   state: () => {
     return {
       // user: {} as User,
-      user: {} as any,
-      token: null as string | null,
+      authUser: null as any,
+      profileUser: {} as any,
       companyInfo: {} as CompanyInfoInterface,
     };
   },
   getters: {
     authProfile(state) {
-      if (state.user.email) {
-        return state.user;
+      return state.authUser;
+      if (state.authUser.email) {
+        return state.authUser;
       }
       const storage = localStorage.getItem("books-for-all-user") as string;
       if (storage) {
@@ -74,8 +76,8 @@ export const useAuthStore = defineStore({
     },
     onboarding(state) {
       return;
-      if (Object.keys(state.user).length) {
-        return !state.user.onboarded_to_eden_business;
+      if (Object.keys(state.authUser).length) {
+        return !state.authUser.onboarded_to_eden_business;
       }
       const storage = localStorage.getItem("books-for-all-user") as string;
       console.log(storage);
@@ -87,53 +89,36 @@ export const useAuthStore = defineStore({
         return true;
       }
     },
+    isLoggedIn(state){
+      console.log(state.authUser);
+      
+      return !!state.authUser;
+    }
   },
   actions: {
-    login(payload: AuthCredentials) {
-      console.log("hi");
-      return new Promise((resolve, reject) => {
-        login(payload)
-          .then((response: any) => {
-            console.log(response);
-
-            if (response.status) {
-              const data = response.data;
-              const token = data.token;
-              const user = data.user;
-              // window.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-              localStorage.setItem(
-                "books-for-all-token",
-                JSON.stringify(token)
-              );
-              localStorage.setItem("books-for-all-user", JSON.stringify(user));
-              this.user = user;
-              this.token = token;
-            }
-            resolve(response);
-          })
-          .catch((error: any) => {
-            reject(error);
-          });
-      });
+    async login(payload: AuthCredentials) {
+        const response =  await loginUser(payload)
+        console.log(response);
+        const data = response.user;
+        localStorage.setItem("books-for-all-user", JSON.stringify(data));
+        // localStorage.setItem("books-for-all-user-role", data.role);
+        this.authUser = data;
+        return response
     },
     async register(payload: AuthCredentials) {
         const response =  await registerUser(payload)
         const data = response.user;
-        const token = await data.getIdToken()
-        // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
         localStorage.setItem("books-for-all-user", JSON.stringify(data));
-        localStorage.setItem("books-for-all-token",JSON.stringify(token))
         // localStorage.setItem("books-for-all-user-role", data.role);
-        this.user = data;
-        this.token = token;
+        this.authUser = data;
         return response
     },
     async updateProfile(payload: any) {
       try{
         const response = await updateProfileRequest(payload)
-        const updatedData = { ...this.user, ...payload.data };
+        const updatedData = { ...this.authUser, ...payload.data };
         localStorage.setItem("books-for-all-user", JSON.stringify(updatedData));
-        this.user = updatedData;
+        this.authUser = updatedData;
         return response
       }
       catch (error) {
@@ -148,13 +133,9 @@ export const useAuthStore = defineStore({
             console.log(response);
             if (response.data.status) {
               // const data = response.data.data;
-              // const token = data.token.access_token;
               // const user = data.user;
-              // // window.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-              // localStorage.setItem("eden-business-token", JSON.stringify(token));
               // localStorage.setItem("eden-business-user", JSON.stringify(user));
-              // this.user = user
-              // this.token = token
+              // this.authUser = user
               localStorage.setItem(
                 "books-for-all-company-profile",
                 JSON.stringify(response.data.data)
@@ -168,7 +149,26 @@ export const useAuthStore = defineStore({
           });
       });
     },
+    setUser(firebaseUser: any){
+      this.authUser = firebaseUser
+      console.log(this.authUser);
+    },
+    clearUser(){
+      this.authUser = null
+    },
+    async logOut(){
+      await logOutUser()
+      this.authUser = null
+      // localStorage.removeItem("books-for-all-user");
+      // localStorage.removeItem("books-for-all-company-profile");
+      // localStorage.removeItem("books-for-all-onboarding-position");
+    }
   },
+  persist: {
+    key: "books-for-all-auth",
+    storage: localStorage,
+    pick: ["authUser"],
+  }
 });
 
 if (import.meta.hot) {

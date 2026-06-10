@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-
 import guest from "./guest";
 import dashboard from "./dashboard";
 import settings from "./settings";
+import { useAuthStore } from "@/store/auth";
 
 
 const routes = [
@@ -16,21 +16,10 @@ const router = createRouter({
 	routes
 });
 router.beforeEach((to, from, next) => {
-	const storage = localStorage.getItem("books-for-all-token");
-	const token = storage ? JSON.parse(storage) : null;
-  
+	const authStore = useAuthStore()
 	const guestRoute = to.meta.permission === "guest";
-	let authenticatedRoute = true;
-	let authenticatedUser = true;
-  
-	if (token) {
-	  authenticatedRoute = to.meta.permission === "user";
-	  authenticatedUser = true;
-	}
-	if (authenticatedUser || guestRoute) {
+	if (authStore.isLoggedIn || guestRoute) {
 	  next();
-	} else if (authenticatedRoute && !authenticatedUser) {
-	  next({ name: "login" });
 	} else {
 	  next({ name: "login" });
 	}
