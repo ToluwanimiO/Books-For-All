@@ -167,13 +167,13 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
 
-  h1 {
-    font-size: 3.5rem;
-    color: #21312a;
-    margin-bottom: 20px;
-    line-height: 0.6;
-    text-transform: uppercase;
-  }
+  // h1 {
+  //   font-size: 3.5rem;
+  //   color: #21312a;
+  //   margin-bottom: 20px;
+  //   line-height: 0.6;
+  //   text-transform: uppercase;
+  // }
 
   h3 {
     font-size: 2rem;

@@ -2,6 +2,8 @@ import Landing from "@/pages/landing.vue";
 
 const Error404 = () => import("../pages/error.vue");
 const Login = () => import("../pages/login.vue");
+const Contact = () => import("../pages/contact.vue");
+const About = () => import("../pages/about.vue");
 const ForgotPassword = () => import("../pages/forgot-password.vue");
 const ResetPassword = () => import("../pages/reset-password.vue");
 const ResetCode = () => import("../pages/reset-code.vue");
@@ -50,6 +52,24 @@ const routes = [
     path: "/",
     name: "landing",
     component: Landing,
+    meta: {
+      permission: "guest",
+      layout: "AppLayoutDefault",
+    },
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: About,
+    meta: {
+      permission: "guest",
+      layout: "AppLayoutDefault",
+    },
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: Contact,
     meta: {
       permission: "guest",
       layout: "AppLayoutDefault",

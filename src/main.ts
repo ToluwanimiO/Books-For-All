@@ -6,6 +6,7 @@ import { createPinia } from 'pinia';
 import piniaPluginPersistedState from "pinia-plugin-persistedstate";
 // Styling
 import "./assets/css/eden-main.scss";
+import "../index.css";
 // Element Plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
