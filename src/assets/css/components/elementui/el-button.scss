@@ -1,8 +1,9 @@
 .el-button {
-  font-family: "CerebriSans", sans-serif;
+  font-family: 'CerebriSans', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 6px !important;
 
   span {
     display: flex;
