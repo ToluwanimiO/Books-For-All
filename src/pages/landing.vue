@@ -1,12 +1,15 @@
 <template>
-  <section aria-labelledby="hero-title" class="flex h-[90vh] w-fit">
+  <section
+    aria-labelledby="hero-title"
+    class="flex flex-col md:flex-row h-fit max-h-[90vh] w-fit !mb-10 md:!mb-0"
+  >
     <div>
       <p
         class="flex w-fit px-2 py-1 items-center text-green-primary font-bold rounded-xl bg-gray-100"
       >
         <MaterialSymbolsFavorite class="mr-1" />Building a community of learners
       </p>
-      <h1 id="hero-title" class="!text-6xl font-extrabold">
+      <h1 id="hero-title" class="!text-5xl md:!text-6xl font-extrabold">
         Every Textbook Deserves
         <span class="text-green-700">Another Student</span>
       </h1>
@@ -14,12 +17,12 @@
         Donate books, and help schools build community-powered learning
         resources
       </p>
-      <el-button type="primary" class="p-4"
+      <el-button type="primary" class="p-4 !hidden md:!flex"
         ><router-link class="flex gap-2 !text-lg" :to="{ name: 'donate' }"
           ><MaterialSymbolsFeaturedSeasonalAndGifts />Donate Books</router-link
         >
       </el-button>
-      <ul class="flex p-0 gap-8 mt-4">
+      <ul class="flex p-0 gap-3 md:gap-8 mt-4">
         <li class="flex items-center">
           <BasilBookOpenSolid class="mr-2 text-green-600 text-4xl" />
           <div>
@@ -44,13 +47,23 @@
       </ul>
     </div>
     <img
-      class="hidden md:inline w-[65%] h-fit"
+      class="md:w-[65%] h-fit"
       src="@/assets/images/landing-hero.png"
       alt="Hero Image"
     />
+    <div class="text-right">
+      <el-button type="primary" class="p-4 w-fit md:!hidden fixed right-3 bottom-10 z-50"
+        ><router-link class="flex gap-2 !text-lg" :to="{ name: 'donate' }"
+          ><MaterialSymbolsFeaturedSeasonalAndGifts />
+          <!-- Donate Books -->
+        </router-link>
+      </el-button>
+    </div>
   </section>
-  <section class="flex gap-10">
-    <article class="flex bg-[#F7F8EE] w-1/2 rounded-lg px-5 py-4 items-center">
+  <section class="flex flex-wrap md:!flex-nowrap gap-10">
+    <article
+      class="flex w-full bg-[#F7F8EE] md:w-1/2 rounded-lg px-5 py-4 items-center"
+    >
       <div>
         <h6 class="!text-green-800">FOR DONORS</h6>
         <p class="font-bold text-2xl">Give Your Books A Second Life</p>
@@ -66,11 +79,13 @@
       </div>
       <img
         src="@/assets/images/donate-books.png"
-        class="w-3/5 h-fit"
+        class="w-3/5 h-fit hidden md:block"
         alt="Donate Books Image"
       />
     </article>
-    <article class="bg-blue-50 flex w-1/2 rounded-lg px-5 py-4 items-center">
+    <article
+      class="bg-blue-50 flex w-full md:w-1/2 rounded-lg px-5 py-4 items-center"
+    >
       <div class="h-fit">
         <h6 class="!text-blue-900">FOR SCHOOLS</h6>
         <p class="font-bold text-2xl">Become A Community Book Hub</p>
@@ -91,7 +106,7 @@
       >
       <img
         src="@/assets/images/school-building.png"
-        class="w-1/2"
+        class="w-1/2 hidden md:block"
         alt="School Image"
       />
       <!-- <img src="@/assets/images/school.png" alt="School Image" /> -->
@@ -99,8 +114,8 @@
   </section>
   <section>
     <h4 class="text-center mt-5 mb-4">How It Works</h4>
-    <ol class="flex justify-content-between gap-4">
-      <li class="flex-1">
+    <ol class="flex flex-wrap justify-content-between gap-4">
+      <li class="md:flex-1">
         <article class="flex gap-2">
           <div class="number">1</div>
           <img
@@ -116,7 +131,7 @@
           </div>
         </article>
       </li>
-      <li class="flex-1">
+      <li class="md:flex-1">
         <article class="flex gap-2">
           <div class="number">2</div>
           <img
@@ -133,7 +148,7 @@
           </div>
         </article>
       </li>
-      <li class="flex-1">
+      <li class="md:flex-1">
         <article class="flex gap-2">
           <div class="number">3</div>
           <img
@@ -147,7 +162,7 @@
           </div>
         </article>
       </li>
-      <li class="flex-1">
+      <li class="md:flex-1">
         <article class="flex gap-2">
           <div class="number">4</div>
           <img
@@ -166,10 +181,10 @@
       </li>
     </ol>
   </section>
-  <div class="flex gap-4 justify-between">
+  <div class="flex flex-col md:flex-row gap-4 justify-between">
     <section>
       <h4>Registered Schools</h4>
-      <div class="flex gap-4 justify-content-between">
+      <div class="flex flex-wrap gap-4 justify-content-between">
         <article class="p-3 shadow-md rounded-xl border flex-1 relative">
           <span class="rounded absolute top-2 right-2 bg-green-300 p-1 text-sm"
             >Active</span
@@ -298,28 +313,27 @@
     </section>
   </div>
   <section
-    class="flex justify-around align-items-center mt-5 rounded-xl py-3 bg-emerald-950 [&_p]:!text-white text-white"
+    class="md:flex justify-around align-items-center mt-5 rounded-xl p-3 md:px-0 bg-emerald-950 [&_p]:!text-white text-white"
   >
-    <PhBooksFill class="text-5xl" />
+    <PhBooksFill class="text-5xl hidden md:block" />
     <!-- <img src="../assets/join-us.png" alt="Join Us Image" /> -->
     <div>
       <h2>Ready to make textbooks accessible for every student?</h2>
       <p>Your books can open doors to a brighter future</p>
     </div>
-    <div class="cta-buttons gap-3 flex">
-      <el-button type="primary" class="p-4"
+    <div class="md:gap-3 flex">
+      <el-button type="primary" class="md:p-4"
         ><router-link :to="{ name: 'donate' }">Donate Books</router-link>
       </el-button>
       <el-button
         type="plain"
-        class="p-4 bg-transparent !text-white hover:!text-green-100"
+        class="md:p-4 bg-transparent !text-white hover:!text-green-100"
         ><router-link :to="{ name: 'donate' }"
           >Register Your School</router-link
         >
       </el-button>
-      <!-- <button class="btn-basic">Register Your School</button> -->
     </div>
-    <EmojioneBackpack class="text-5xl text-red-900" />
+    <EmojioneBackpack class="text-5xl hidden md:block" />
   </section>
 </template>
 

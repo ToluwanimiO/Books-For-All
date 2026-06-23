@@ -1,6 +1,6 @@
 <template>
   <header class="container-fluid sticky bg-white z-50 pb-2 top-0 text-center mb-0">
-    <nav class="d-flex justify-content-between pt-3 px-5 is-align-center">
+    <nav class="hidden md:flex justify-content-between pt-3 px-5 is-align-center">
       <router-link :to="{ name: 'landing' }">
         <img
           src="../assets/transparent-image.png"
@@ -26,6 +26,7 @@
         >
       </div>
     </nav>
+    <nav class="md:hidden p-2">Mobile</nav>
   </header>
   <main class="p-5">
     <slot />
