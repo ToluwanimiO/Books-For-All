@@ -1,5 +1,9 @@
 <template>
-  <el-card :class="{boxCard :position === 1, boxCard2:position>1}" class="text-center" :style="{ borderRadius: '16px' }">
+  <el-card
+    :class="{ boxCard: position === 1, boxCard2: position > 1 }"
+    class="text-center"
+    :style="{ borderRadius: '16px' }"
+  >
     <router-link
       class="info-text"
       :to="{
@@ -7,14 +11,14 @@
         params: params,
       }"
     >
-      <div class="text-left" v-if="position >= 3">Back</div>
+      <div v-if="position >= 3" class="text-left">Back</div>
     </router-link>
     <div class="progress-container">
       <span
         v-for="i in 7"
         :key="i"
         class="progress"
-        :class="{ completed: i <= position || (i == 7 && position == 7)  }"
+        :class="{ completed: i <= position || (i == 7 && position == 7) }"
       >
       </span>
     </div>
@@ -23,12 +27,7 @@
     </div>
     <div class="card-body mt-40">
       <p class="font-lg">{{ bodyText }}</p>
-      <el-button
-        @click="completeOnboarding"
-        :loading="loading"
-        type="primary"
-        class="mt-40 go-btn"
-      >
+      <el-button :loading="loading" type="primary" class="mt-40 go-btn">
         {{ btnText }}
       </el-button>
     </div>
@@ -36,25 +35,20 @@
 </template>
 
 <script lang="ts" setup>
-import { updateOnboarding } from "@/requests/onboarding";
-import { useAuthStore } from "@/store/auth";
-import { computed, onMounted,ref } from "vue";
-import { useRoute,useRouter } from "vue-router";
-const router = useRouter()
-const authStore = useAuthStore();
+import { computed, ref } from 'vue'
 
 const props = defineProps({
   headerText: {
     type: String,
-    default: "",
+    default: '',
   },
   bodyText: {
     type: String,
-    default: "",
+    default: '',
   },
   btnText: {
     type: String,
-    default: "",
+    default: '',
   },
   position: {
     type: Number,
@@ -62,58 +56,19 @@ const props = defineProps({
   },
   routeTo: {
     type: String,
-    default: "",
+    default: '',
   },
   backTo: {
     type: String,
-    default: "",
+    default: '',
   },
-});
+})
 
-const route = useRoute();
 const loading = ref(false)
-onMounted(() => {
-  console.log(route);
-  localStorage.setItem(
-    "books-for-all-onboarding-position",
-    `${props.position}`,
-  );
-});
 
 const params = computed(() =>
-  props.position === 3 ? { view: "dashboard" } : {},
-);
-
-const emit = defineEmits(["dashboard"]);
-
-const completeOnboarding = () => {
-  loading.value = false
-  if (props.position === 1) {
-    emit("dashboard");
-  }
-  if (props.position != 7) {
-    router.push({name:props.routeTo})
-    loading.value = true
-    return;
-  }
-  loading.value = true
-  updateOnboarding()
-    .then((response) => {
-      if (response.data.status) {
-        authStore.user.onboarded_to_eden_business = true;
-        let user = JSON.parse(
-          localStorage.getItem("books-for-all-user") as string,
-        );
-        user.onboarded_to_eden_business = 1;
-        localStorage.setItem("books-for-all-user", JSON.stringify(user));
-        router.push({name:props.routeTo})
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      // App.$message.error("Something went wrong");
-    });
-};
+  props.position === 3 ? { view: 'dashboard' } : {}
+)
 </script>
 
 <style scoped>
