@@ -298,7 +298,7 @@
       <div class="text-center">
         <el-button
           type="plain"
-          class="hidden! md:inline! p-4 !text-green-600 mt-4"
+          class="hidden! md:inline! p-4 text-green-600! mt-4"
           ><router-link class="flex items-center gap-2" :to="{ name: 'donate' }"
             >See All Schools <MaterialSymbolsArrowRightAltRounded
           /></router-link>
@@ -306,7 +306,7 @@
       </div>
     </section>
     <section
-      class="mt-2 md:mt-0 bg-green-900 md:w-[320px] text-white [&_p]:!text-white [&_strong]:text-lg [&_article]:flex [&_article]:items-cente p-10 rounded-2xl"
+      class="mt-2 md:mt-0 bg-green-900 md:w-[320px] text-white [&_p]:text-white! [&_strong]:text-lg [&_article]:flex [&_article]:items-cente p-10 rounded-2xl"
     >
       <h4 class="text-white! text-2xl! font-bold">Our Impact</h4>
       <p class="text-wrap">
@@ -335,7 +335,7 @@
     </section>
   </div>
   <section
-    class="md:flex justify-around align-items-center mt-2 md:mt-5 rounded-xl p-8 md:px-0 bg-emerald-950 [&_p]:!text-white text-white"
+    class="md:flex justify-around align-items-center mt-2 md:mt-5 rounded-xl p-8 md:px-0 bg-emerald-950 [&_p]:text-white! text-white"
   >
     <div class="flex">
       <PhBooksFill class="text-5xl hidden md:block mr-1" />
@@ -363,6 +363,9 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({
+  name: 'LandingPage',
+})
 import MaterialSymbolsFavorite from '~icons/material-symbols/favorite'
 import MaterialSymbolsFeaturedSeasonalAndGifts from '~icons/material-symbols/featured-seasonal-and-gifts'
 import BasilBookOpenSolid from '~icons/basil/book-open-solid'
