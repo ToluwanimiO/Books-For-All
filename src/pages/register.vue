@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div class="gh-container pb-5 d-flex justify-content-center">
+    <div class="gh-container pb-5 flex justify-center">
       <div class="gh-container--form">
         <div class="gh-container--form__header">
+          
           <div class="logo">
-            <img src="../assets/logo.svg" alt="" srcset="" />
+            <router-link :to="{ name: 'landing' }">
+              <img src="@/assets/transparent-image.png" alt="Logo" />
+            </router-link>
           </div>
           <h2 class="header">Create an account</h2>
         </div>
@@ -27,12 +30,12 @@
               </el-select>
             </el-form-item>
             <el-row :gutter="20" class="">
-              <el-col :span="12">
+              <el-col :xs="24" :md="{span:12}">
                 <el-form-item class="" label="First name" prop="first_name">
                   <el-input type="text" v-model="form.first_name" />
                 </el-form-item>
               </el-col>
-              <el-col :span="12">
+              <el-col :xs="24" :md="{span:12}">
                 <el-form-item class="" label="Last name" prop="last_name">
                   <el-input type="text" v-model="form.last_name" />
                 </el-form-item>

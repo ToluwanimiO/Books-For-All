@@ -1,14 +1,21 @@
 <template>
-  <div class="gh-container d-flex justify-content-center">
+  <div class="gh-container flex justify-center">
     <div class="gh-container--form">
       <div class="gh-container--form__header">
         <div class="logo">
-          <img src="@/assets/logo.svg" alt="" srcset="" />
+          <router-link :to="{ name: 'landing' }">
+            <img src="@/assets/transparent-image.png" class="my-12" alt="Logo" />
+          </router-link>
         </div>
         <h2 class="header">Log in to your account</h2>
       </div>
       <div class="gh-container--form__content">
-        <el-form :model="form" label-position="top" ref="loginForm" :rules="rules">
+        <el-form
+          :model="form"
+          label-position="top"
+          ref="loginForm"
+          :rules="rules"
+        >
           <el-form-item label="Email" prop="email">
             <el-input type="text" v-model="form.email" />
           </el-form-item>
@@ -24,9 +31,17 @@
         </el-form>
         <div class="actions">
           <p>
-            <router-link :to="{ name: 'forgot-password' }">Forgot your password?</router-link>
+            <router-link :to="{ name: 'forgot-password' }"
+              >Forgot your password?</router-link
+            >
           </p>
-          <el-button type="primary" :loading="loading" :disabled="disableLogin" @click="login(loginForm)">Log in</el-button>
+          <el-button
+            type="primary"
+            :loading="loading"
+            :disabled="disableLogin"
+            @click="login(loginForm)"
+            >Log in</el-button
+          >
           <div class="divider"></div>
         </div>
         <div class="sub-head text-center mt-3">
@@ -39,76 +54,71 @@
 </template>
 
 <script lang="ts" setup>
-import { useAuthStore } from "../store/auth";
-import { computed, reactive, ref } from "vue";
-import { useRouter } from "vue-router";
-import { AuthCredentials } from "@/types";
-import { ElMessage, FormInstance, FormRules } from "element-plus";
+import { useAuthStore } from '../store/auth'
+import { computed, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { AuthCredentials } from '@/types'
+import { ElMessage, FormInstance, FormRules } from 'element-plus'
 
-const store = useAuthStore();
-const router = useRouter();
+const store = useAuthStore()
+const router = useRouter()
 
 const form = reactive<AuthCredentials>({
-  email: "",
-  password: "",
-});
-const loginForm = ref<FormInstance>();
-const loading = ref(false);
-const disableLogin = computed(() => form.email === "" || form.password === "");
+  email: '',
+  password: '',
+})
+const loginForm = ref<FormInstance>()
+const loading = ref(false)
+const disableLogin = computed(() => form.email === '' || form.password === '')
 const rules = ref<FormRules<AuthCredentials>>({
   password: [
     {
       required: true,
-      message: "Password is required",
-      trigger: "change",
+      message: 'Password is required',
+      trigger: 'change',
     },
   ],
   email: [
     {
       required: true,
-      message: "Email address is required",
-      trigger: "change",
+      message: 'Email address is required',
+      trigger: 'change',
     },
     {
-      type: "email",
-      message: "Email address is not valid",
-      trigger: "blur",
+      type: 'email',
+      message: 'Email address is not valid',
+      trigger: 'blur',
     },
   ],
-});
-const passwordFieldType = ref("password");
-const passwordToggleText = ref("Show password");
+})
+const passwordFieldType = ref('password')
+const passwordToggleText = ref('Show password')
 
-const login = async (formElement:FormInstance | undefined) => {
-  if (!formElement) return;
-  const valid = await formElement.validate();
+const login = async (formElement: FormInstance | undefined) => {
+  if (!formElement) return
+  const valid = await formElement.validate()
   if (!valid) {
-    return;
+    return
   }
-  loading.value = true;
-  try{
-    await store.login(form);
-    router.push({ name: "dashboard" });
+  loading.value = true
+  try {
+    await store.login(form)
+    router.push({ name: 'dashboard' })
+  } catch (err: any) {
+    console.log(err)
+    ElMessage.error(err?.message || 'An error occurred while logging in')
+  } finally {
+    loading.value = false
   }
-  catch (err: any) {
-    console.log(err);
-    ElMessage.error(
-      err?.message || "An error occurred while logging in",
-    );
-  } 
-  finally{
-    loading.value = false;
-  }
-  
-};
+}
 
 const showPassword = () => {
-  if (passwordFieldType.value === "password") {
-    passwordFieldType.value = "text";
-    passwordToggleText.value = "Hide Password";
+  if (passwordFieldType.value === 'password') {
+    passwordFieldType.value = 'text'
+    passwordToggleText.value = 'Hide Password'
   } else {
-    passwordFieldType.value = "password";
-    passwordToggleText.value = "Show Password";
+    passwordFieldType.value = 'password'
+    passwordToggleText.value = 'Show Password'
   }
-};
+}
 </script>

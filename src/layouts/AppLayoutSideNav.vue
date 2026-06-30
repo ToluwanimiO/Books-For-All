@@ -1,6 +1,12 @@
 <template>
+  <div :class="['icon-container', { iconState: showSideBar }]">
+    <IconParkOutlineHamburgerButton
+      class="ml-2 text-2xl"
+      @click="showSideBar = !showSideBar"
+    />
+  </div>
   <div class="eden-crm">
-    <div :class="['eden-crm--sidebar', { open: true }]">
+    <div :class="['eden-crm--sidebar', { open: showSideBar }]">
       <eden-sidebar />
     </div>
     <div class="eden-crm--dashboard">
@@ -21,10 +27,26 @@
 </template>
 
 <script lang="ts" setup>
-import EdenSidebar from "@/components/Navigation/EdenSidebar.vue";
+import EdenSidebar from '@/components/Navigation/EdenSidebar.vue'
+import IconParkOutlineHamburgerButton from '~icons/icon-park-outline/hamburger-button'
+import { ref } from 'vue'
+const showSideBar = ref(true)
 </script>
 
 <style lang="scss" scoped>
+.icon-container {
+  // background: var(--eden-sidenav);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 8px 0px;
+  display: block;
+}
+.iconState {
+  background: var(--eden-sidenav);
+  transition: background-color 0.25s ease-out;
+}
 .eden-crm {
   height: 100vh;
   width: 100%;
@@ -111,10 +133,10 @@ import EdenSidebar from "@/components/Navigation/EdenSidebar.vue";
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 767px) {
     &--sidebar {
       position: absolute;
-      left: calc(var(--sidenav-width) * -1);
+      left: -100vw;
       z-index: 12;
       transition: left 0.25s ease-out;
 
@@ -169,5 +191,10 @@ import EdenSidebar from "@/components/Navigation/EdenSidebar.vue";
 }
 .container {
   position: relative;
+}
+@media (min-width: 768px) {
+  .icon-container{
+    display: none;
+  }
 }
 </style>

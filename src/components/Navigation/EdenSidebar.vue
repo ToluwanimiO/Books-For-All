@@ -199,10 +199,9 @@ watch(
   background: var(--eden-sidenav);
   height: 100vh;
   transition: width 0.3s ease-in-out;
-  width: 100%;
+  width: 100vw;
   padding: 12px;
   position: relative;
-
   // overflow-y: scroll;
   .user {
     background: #ffffff;
@@ -363,5 +362,11 @@ watch(
   border: 1px solid #98dcaf;
   border-radius: 12px 12px 12px 0px;
   padding: 10px;
+}
+
+@media (min-width:768px) {
+  .eden-crm--sidebar {
+    width: 100%;
+  }
 }
 </style>

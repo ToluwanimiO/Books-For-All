@@ -3,7 +3,7 @@
     <AppLayoutSideNav v-if="routeLayout === 'AppLayoutSideNav'">
       <slot />
     </AppLayoutSideNav>
-    <AppLayoutDefault v-else>
+    <AppLayoutDefault v-else :page-layout="routeLayout">
       <slot />
     </AppLayoutDefault>
   </div>
@@ -18,7 +18,7 @@ import AppLayoutDefault from "./AppLayoutDefault.vue";
 const route = useRoute();
 const router = useRouter();
 
-const routeLayout = computed(() => route.meta.layout);
+const routeLayout = computed(() => route.meta.layout as string | undefined);
 
 onMounted(async () => {
   await router.isReady();
