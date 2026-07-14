@@ -1,5 +1,5 @@
 <template>
-  <eden-page-header title="Dashboard" />
+  <page-header title="Dashboard" />
   <el-row :gutter="15">
     <el-col :md="12">
       <eden-container class="text-center p-10">
@@ -20,14 +20,21 @@
       </eden-container>
     </el-col>
     <el-col :md="12">
-      <eden-container style="min-height: 100%;" class="d-flex align-items-center card-info">
+      <eden-container
+        style="min-height: 100%"
+        class="d-flex align-items-center card-info"
+      >
         <div class="d-flex align-items-center">
-          <i class="eden-icon-alert-circle me-2" style="color:#ff9d00"></i>
+          <i class="eden-icon-alert-circle me-2" style="color: #ff9d00"></i>
           <div>
-            <div>Disclaimer:<br />The books provided through this platform are <span class="fw-bold">strictly for
-                educational purposes</span> and must not
-              be
-              <span class="fw-bold">sold, purchased, or exchanged for money</span> under any circumstances.
+            <div>
+              Disclaimer:<br />The books provided through this platform are
+              <span class="fw-bold">strictly for educational purposes</span> and
+              must not be
+              <span class="fw-bold"
+                >sold, purchased, or exchanged for money</span
+              >
+              under any circumstances.
               <!-- If you notice any attempts to sell or monetize donated books, please report the violation immediately
               using
               the button below. -->
@@ -41,15 +48,21 @@
   </el-row>
   <el-row class="d-flex align-items-stretch" :gutter="15">
     <el-col :md="12">
-      <eden-container style="min-height: 100%;">
+      <eden-container style="min-height: 100%">
         <p class="text-bold">Top 3 Donors</p>
-        <el-row class="mt-4 " v-for="(donor, index) in donors" :key="index">
+        <el-row class="mt-4" v-for="(donor, index) in donors" :key="index">
           <el-col :md="12">
             <span class="text-grey-tertiary mr-3">{{ donor.name }}</span>
-            {{ donor.books_donated }}/{{ total_books_donated }}</el-col>
+            {{ donor.books_donated }}/{{ total_books_donated }}</el-col
+          >
           <el-col :md="12">
-            <el-progress :class="index === 0 ? 'food' : index === 1 ? 'cleaning' : 'beauty'
-              " :percentage="(donor.books_donated / total_books_donated) * 100" :stroke-width="18">
+            <el-progress
+              :class="
+                index === 0 ? 'food' : index === 1 ? 'cleaning' : 'beauty'
+              "
+              :percentage="(donor.books_donated / total_books_donated) * 100"
+              :stroke-width="18"
+            >
               <span style="color: transparent">c</span>
             </el-progress>
           </el-col>
@@ -59,25 +72,29 @@
     <el-col :md="12">
       <eden-container>
         <div class="card-container">
-          <RouterLink class="is-flex justify-between align-center" :to="{
-            name: 'partner-schools',
-          }">
+          <RouterLink
+            class="is-flex justify-between align-center"
+            :to="{
+              name: 'partner-schools',
+            }"
+          >
             <div class="">
               <div>Active Partner Schools</div>
               <div class="text-bold big-num">300</div>
             </div>
             <span class="is-flex">
-              <p class="text-grey-tertiary">
-                Become A Partner School
-              </p>
+              <p class="text-grey-tertiary">Become A Partner School</p>
               <span class="icon-position eden-icon-arrow-right"></span>
             </span>
           </RouterLink>
         </div>
         <div class="card-container">
-          <RouterLink class="is-flex justify-between align-center" :to="{
-            name: 'find-book',
-          }">
+          <RouterLink
+            class="is-flex justify-between align-center"
+            :to="{
+              name: 'find-book',
+            }"
+          >
             <div class="">
               <div>Books Available</div>
               <div class="text-bold big-num">1,700</div>
@@ -96,58 +113,57 @@
 </template>
 
 <script lang="ts" setup>
-import { verifyAccount } from "../../requests/auth";
-import { useAuthStore } from "../../store/auth";
-import EdenContentLoader from "../../components/Global/EdenContentLoader.vue";
-import EdenCard from "../../components/Global/EdenCard.vue";
-import { computed, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
-// import EdenPageHeader from "@/components/Global/EdenPageHeader.vue";
-import { getSubscriptions } from "@/requests/subscriptions";
-const authStore = useAuthStore();
-const total_books_donated = 670;
+import { verifyAccount } from '../../requests/auth'
+import { useAuthStore } from '../../store/auth'
+import EdenContentLoader from '../../components/Global/EdenContentLoader.vue'
+import EdenCard from '../../components/Global/EdenCard.vue'
+import { computed, onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
+import { getSubscriptions } from '@/requests/subscriptions'
+const authStore = useAuthStore()
+const total_books_donated = 670
 const donors = [
-  { name: "Toluwanimi Osuolale", books_donated: 389 },
-  { name: "Anonymous ", books_donated: 100 },
-  { name: "Felicia O. ", books_donated: 78 },
-];
-const route = useRoute();
-const router = useRouter();
+  { name: 'Toluwanimi Osuolale', books_donated: 389 },
+  { name: 'Anonymous ', books_donated: 100 },
+  { name: 'Felicia O. ', books_donated: 78 },
+]
+const route = useRoute()
+const router = useRouter()
 
-const loading = ref(false);
-const activeCard = ref(true);
+const loading = ref(false)
+const activeCard = ref(true)
 const reportViolation = () => {
-  if(user.value.email == "") {
-    ElMessage.error("Please sign up to report a violation");
-    return router.push({ name: 'register' });
+  if (user.value.email == '') {
+    ElMessage.error('Please sign up to report a violation')
+    return router.push({ name: 'register' })
   }
-  router.push({ name: 'report-violation' });
-};
-const onboarding = computed(() => authStore.onboarding);
-const user = computed(() => authStore.authProfile);
+  router.push({ name: 'report-violation' })
+}
+const onboarding = computed(() => authStore.onboarding)
+const user = computed(() => authStore.authProfile)
 
 const fullName = computed(() => {
-  console.log(user);
+  console.log(user)
   if (user.value.first_name == null) {
-    return "";
+    return ''
   }
   let fname =
     user.value.first_name && user.value.first_name != null
       ? user.value.first_name
-      : "";
-  return fname;
-});
+      : ''
+  return fname
+})
 
-const companyProfile = computed(() => authStore.companyProfile);
+const companyProfile = computed(() => authStore.companyProfile)
 
 const goBack = () => {
-  router.back();
-};
-const subscriptions = ref([]);
+  router.back()
+}
+const subscriptions = ref([])
 const setActiveCard = () => {
-  activeCard.value = !activeCard.value;
-};
+  activeCard.value = !activeCard.value
+}
 
 const goHome = () => {
   // const role = this.$store.getters.user_role;
@@ -159,11 +175,11 @@ const goHome = () => {
   //     this.$router.push({ name: "customers.index" });
   //   }
   // } else {
-  router.push({ name: "login" });
+  router.push({ name: 'login' })
   // }
-};
+}
 
-onMounted(() => { });
+onMounted(() => {})
 </script>
 
 <style scoped lang="scss">

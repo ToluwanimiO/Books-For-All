@@ -1,12 +1,12 @@
 .el-table {
   background: transparent;
   color: #0f241b;
-  font-family: "CerebriSans", sans-serif;
+  font-family: 'CerebriSans', sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
 
   thead {
-    border-radius: 8px 0 0 8px;
+    // border-radius: 8px 0 0 8px;
   }
   thead,
   th {
@@ -23,17 +23,21 @@
   th,
   td {
     padding: 10px 0;
+    &.el-table__cell {
+      border-left: 0 !important;
+      border-right: 0 !important;
+    }
   }
 
   th {
     &:first-child {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+      // border-top-left-radius: 8px;
+      // border-bottom-left-radius: 8px;
     }
 
     &:last-child {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
+      // border-top-right-radius: 8px;
+      // border-bottom-right-radius: 8px;
     }
   }
 
@@ -128,6 +132,7 @@
         padding: 0 !important;
         .cell {
           padding: 0 !important;
+          border: 0;
 
           table {
             tbody {
@@ -172,7 +177,7 @@
 
         &-arrow-right {
           &::before {
-            content: "\e791";
+            content: '\e791';
           }
         }
       }

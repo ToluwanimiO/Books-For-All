@@ -74,22 +74,34 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useRouter } from "vue-router";
-import { ArrowRight } from "@element-plus/icons-vue";
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { ArrowRight } from '@element-plus/icons-vue'
 
-defineProps<{
-  title?: string;
-  subtitle?: string;
-  section?: string;
-  subsection?: string;
-}>();
+defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+  subtitle: {
+    type: String,
+    default: '',
+  },
+  section: {
+    type: String,
+    default: '',
+  },
+  subsection: {
+    type: String,
+    default: '',
+  },
+})
 
-const router = useRouter();
+const router = useRouter()
 
-const goBackwards = (index: number) => {
-  router.go(index);
-};
+const goBackwards = (indexNo: number): void => {
+  router.go(indexNo)
+}
 </script>
 
 <style lang="scss" scoped>
